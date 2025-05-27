@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import { prisma } from '../models';
 import bcrypt from 'bcrypt';
 import { generarToken } from '../utils/jwt';
+import { createUsuarioDireccion } from '../services/usuarioDireccion.service';
+import { createDireccion } from '../services/direccion.service';
 
 //Registo del usuario
 export const register = async (req: Request, res: Response): Promise<void> => {
-    const { nombre, email, contrasena, dni, rol } = req.body;
+    const { nombre, email, contrasena, dni, rol, direccion } = req.body;
     console.log('Request body:', req.body);
     try {
         if (!nombre || !email || !contrasena || !dni || !rol) {
@@ -32,7 +34,13 @@ export const register = async (req: Request, res: Response): Promise<void> => {
                 dni,
                 rol,
             }
-        })
+        });
+
+        //Crear direccion
+        const nuevaDireccion = await createDireccion(direccion);
+
+        //Relacion usuario-direccion
+        await createUsuarioDireccion(nuevoUsuario.id, nuevaDireccion.id);
 
         //Genera un token JWT
         const token = generarToken({ id: nuevoUsuario.id.toString(), rol: nuevoUsuario.rol });
