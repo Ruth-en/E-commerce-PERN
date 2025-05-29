@@ -21,3 +21,8 @@ export const createPrecio = async (data: {
     }
     return prisma.precio.create({ data })
 };
+
+// Eliminar un Precio por ID
+export const deletePrecioById = async (id: bigint) => {
+    return prisma.precio.delete({ where: { id } });
+};
