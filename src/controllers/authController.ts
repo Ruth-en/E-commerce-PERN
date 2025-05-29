@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import { generarToken } from '../utils/jwt';
 import { createUsuarioDireccion } from '../services/usuarioDireccion.service';
 import { createDireccion } from '../services/direccion.service';
+import { createUsuario } from '../services/usuarios.service';
 
 //Registo del usuario
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -26,18 +27,16 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         const hash = await bcrypt.hash(contrasena, 10);
 
         //Crear el usuario.
-        const nuevoUsuario = await prisma.usuario.create({
-            data: {
+        const nuevoUsuario = await createUsuario({
                 nombre,
                 email,
                 contrasena: hash,
                 dni,
                 rol,
-            }
         });
 
         //Crear direccion
-        const nuevaDireccion = await createDireccion(direccion);
+        const nuevaDireccion = await createDireccion(direccion); //cambiar por las campos del formulario
 
         //Relacion usuario-direccion
         await createUsuarioDireccion(nuevoUsuario.id, nuevaDireccion.id);

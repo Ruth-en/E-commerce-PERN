@@ -21,6 +21,6 @@ export const updateTalleById = async (id: bigint, data: { numero: string }) => {
 }
 
 //Eliminar un Talle por ID
-export const ProductoTalleById = async (id: bigint) => {
+export const deleteTalleById = async (id: bigint) => {
     return prisma.talle.delete({ where: { id } })
 }

@@ -1,4 +1,3 @@
-import { Rol } from "../generated/prisma";
 import { prisma } from "../models"
 
 // Obtenemos todos los usuarios
