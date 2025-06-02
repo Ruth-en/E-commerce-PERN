@@ -6,7 +6,7 @@ export const getAllPrecios = async () => {
 };
 
 // Obtener un precio por ID
-export const getAllPrecioById = async (id: bigint) => {
+export const getAllPrecioById = async (id: number) => {
     return prisma.precio.findUnique({ where: { id } });
 };
 
@@ -23,6 +23,6 @@ export const createPrecio = async (data: {
 };
 
 // Eliminar un Precio por ID
-export const deletePrecioById = async (id: bigint) => {
+export const deletePrecioById = async (id: number) => {
     return prisma.precio.delete({ where: { id } });
 };

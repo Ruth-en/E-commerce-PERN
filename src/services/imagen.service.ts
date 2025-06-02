@@ -6,7 +6,7 @@ export const getAllImagen = async () => {
 }
 
 //Obtener un Imagen por ID
-export const getImagenById = async (id: bigint) => {
+export const getImagenById = async (id: number) => {
     return prisma.imagen.findUnique({ where: { id } })
 }
 
@@ -16,11 +16,11 @@ export const createImagen = async (data: { url: string }) => {
 }
 
 // Actualizar un Imagen por ID
-export const updateImagenById = async (id: bigint, data: { url: string }) => {
+export const updateImagenById = async (id: number, data: { url: string }) => {
     return prisma.imagen.update({ where: { id }, data })
 }
 
 //Eliminar un Imagen por ID
-export const deleteImagenById = async (id: bigint) => {
+export const deleteImagenById = async (id: number) => {
     return prisma.imagen.delete({ where: { id } })
 }

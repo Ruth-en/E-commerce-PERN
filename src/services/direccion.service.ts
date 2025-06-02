@@ -6,7 +6,7 @@ export const getAllDirecciones = async () => {
 }
 
 // Obtener una dirección por ID
-export const getAllDireccionesById = async (id: bigint) => {
+export const getAllDireccionesById = async (id: number) => {
     return prisma.direccion.findUnique({
         where: { id },
     })
@@ -23,7 +23,7 @@ export const createDireccion = async (data: {
 }
 
 // Actualizar una dirección por ID
-export const updateDireccionById = async (id: bigint, data: {
+export const updateDireccionById = async (id: number, data: {
     pais: string;
     provincia: string;
     departamento: string;
@@ -33,6 +33,6 @@ export const updateDireccionById = async (id: bigint, data: {
 }
 
 // Eliminar una dirección por ID
-export const deleteDireccion = async (id: bigint) => {
+export const deleteDireccion = async (id: number) => {
     return prisma.direccion.delete({ where: { id } });
 };

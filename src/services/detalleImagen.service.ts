@@ -2,8 +2,8 @@ import { prisma } from "../models"
 
 // Relacion imagen y detalleprodcto
 export const addImagenToDetalleProducto = async (data: {
-    detalleId: bigint;
-    imagenId: bigint;
+    detalleId: number;
+    imagenId: number;
 }) => {
     return prisma.detalleImagen.create({ data });
 };
@@ -19,7 +19,7 @@ export const getAllDetalleImagenes = async () => {
 };
 
 // 2. Obtener una relación detalle-imagen por ID
-export const getDetalleImagenById = async (id: bigint) => {
+export const getDetalleImagenById = async (id: number) => {
     return prisma.detalleImagen.findUnique({
         where: { id },
         include: {
@@ -30,7 +30,7 @@ export const getDetalleImagenById = async (id: bigint) => {
 };
 
 // 4. Eliminar una relación detalle-imagen por ID
-export const deleteDetalleImagenById = async (id: bigint) => {
+export const deleteDetalleImagenById = async (id: number) => {
     return prisma.detalleImagen.delete({
         where: { id },
     });

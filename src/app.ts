@@ -1,4 +1,6 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './config/swagger';
 import authRouter from "./routes/authRoutes";
 import dotenv from "dotenv";
 import talleRouter from './routes/talle.routes';
@@ -39,6 +41,9 @@ app.use("/api/orden-detalle", ordenDetalleRouter);
 
 //apirest de usuarios
 app.use('/api/auth', authRouter);
-app.use("/api/usuario", usuarioRouter);
+app.use('/api/usuario', usuarioRouter);
+
+// Ruta de documentación Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default app;

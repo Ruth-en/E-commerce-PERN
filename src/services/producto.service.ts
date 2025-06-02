@@ -6,7 +6,7 @@ export const getAllProductos = async () => {
 };
 
 //Obtener un Producto por ID
-export const getProductoById = async (id: bigint) => {
+export const getProductoById = async (id: number) => {
     return prisma.producto.findUnique({ where: { id } })
 }
 
@@ -15,23 +15,23 @@ export const createProducto = async (data: {
     nombre: string;
     sexo: string;
     tipoProducto: number;
-    categoriaId: bigint;
+    categoriaId: number;
 }) => {
     return prisma.producto.create({ data });
 }
 
 // Editar un Producto por ID
-export const updateProductoById = async (id: bigint, data: {
+export const updateProductoById = async (id: number, data: {
     nombre: string;
     sexo: string;
     tipoProducto: number;
-    categoriaId: bigint;
+    categoriaId: number;
 }) => {
     return prisma.producto.update({ where: { id }, data });
 }
 
 //Eliminar un usuario por ID
-export const deleteProductoById = async (id: bigint) => {
+export const deleteProductoById = async (id: number) => {
     return prisma.producto.delete({ where: { id } });
 }
 

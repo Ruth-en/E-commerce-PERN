@@ -7,7 +7,7 @@ export const getAllCategorias = async () => {
 }
 
 // Obtener categoria por ID
-export const getCategoriaById = async (id: bigint) => {
+export const getCategoriaById = async (id: number) => {
     return prisma.categoria.findUnique({ where: { id } })
 }
 
@@ -19,13 +19,13 @@ export const createCategoria = async (data: {
 }
 
 // Actualizamos una categoria por ID
-export const updateCategoria = async (id: bigint, data: {
+export const updateCategoria = async (id: number, data: {
     nombre: string;
 }) => {
     return prisma.categoria.update({ where: { id }, data });
 }
 
 // Eliminar categoria por ID
-export const deleteCategoria = async (id: bigint) => {
+export const deleteCategoria = async (id: number) => {
     return prisma.categoria.delete({ where: { id } })
 }

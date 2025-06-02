@@ -14,7 +14,7 @@ export const getAllTalles = async (req: Request, res: Response) => {
 // GET /talles/:id
 export const getTalleById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const talle = await talleService.getTalleById(id);
 
         if (!talle) {
@@ -47,7 +47,7 @@ export const createTalle = async (req: Request, res: Response) => {
 // PUT /talles/:id
 export const updateTalleById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const talle = await talleService.updateTalleById(id, req.body);
         res.json(talle);
     } catch (error) {
@@ -58,7 +58,7 @@ export const updateTalleById = async (req: Request, res: Response) => {
 // DELETE /talles/:id
 export const deleteTalle = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await talleService.deleteTalleById(id);
         res.status(204).send();
     } catch (error) {

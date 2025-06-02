@@ -1,15 +1,16 @@
 import { Router } from "express";
 import * as ordenCompraController from "../controllers/ordenCompra.controller";
+import { authenticateToken } from "../middlewares/auth";
 
 const ordenCompraRouter = Router();
 
 // GET /ordenes
-ordenCompraRouter.get("/", ordenCompraController.getAllOrdenes);
+ordenCompraRouter.get("/", authenticateToken, ordenCompraController.getAllOrdenes);
 
 // GET /ordenes/:id
-ordenCompraRouter.get("/:id", ordenCompraController.getOrdenById);
+ordenCompraRouter.get("/:id", authenticateToken, ordenCompraController.getOrdenById);
 
 // POST /ordenes
-ordenCompraRouter.post("/", ordenCompraController.createOrdenCompra);
+ordenCompraRouter.post("/", authenticateToken, ordenCompraController.createOrdenCompra);
 
 export default ordenCompraRouter;

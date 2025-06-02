@@ -1,12 +1,12 @@
 import { prisma } from "../models"
-
+import bcrypt from 'bcrypt';
 // Obtenemos todos los usuarios
 export const getAllUsuarios = async () => {
     return prisma.usuario.findMany();
 }
 
 // Obtenemos un Usuario por ID
-export const getUsuarioById = async (id: bigint) => {
+export const getUsuarioById = async (id: number) => {
     return prisma.usuario.findUnique({ where: { id } });
 }
 
@@ -18,11 +18,12 @@ export const createUsuario = async (data: {
     dni: string;
     rol: "ADMIN" | "CLIENTE";
 }) => {
+    
     return prisma.usuario.create({ data })
 }
 
 // Actualizar un usuario por ID
-export const updateUsuario = async (id: bigint, data: {
+export const updateUsuario = async (id: number, data: {
     data: {
         nombre: string;
         email: string;
@@ -35,6 +36,6 @@ export const updateUsuario = async (id: bigint, data: {
 }
 
 // Eliminar usuario po ID
-export const deleteUsuario = async (id: bigint) => {
+export const deleteUsuario = async (id: number) => {
     return prisma.usuario.delete({ where: { id } })
 }

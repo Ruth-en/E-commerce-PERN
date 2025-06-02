@@ -14,7 +14,7 @@ export const getAllCategorias = async (req: Request, res: Response) => {
 // GET /categoria/:id
 export const getCategoriaById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const categoria = await categoriaService.getCategoriaById(id);
 
         if (!categoria) {
@@ -47,7 +47,7 @@ export const createCategoria = async (req: Request, res: Response) => {
 // PUT /categoria/:id
 export const updateCategoriaById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const categoriaActualizada = await categoriaService.updateCategoria(id, req.body);
         res.json(categoriaActualizada);
     } catch (error) {
@@ -58,7 +58,7 @@ export const updateCategoriaById = async (req: Request, res: Response) => {
 // DELETE /categoria/:id
 export const deleteCategoria = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await categoriaService.deleteCategoria(id);
         res.status(204).json({ message: "Imagen eliminada correctamente" });
     } catch (error) {

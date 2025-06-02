@@ -2,14 +2,14 @@ import { prisma } from "../models";
 
 // Agregar un producto (detalle) a una orden
 export const addDetalleToOrden = async (data: {
-    ordenCompraId: bigint;
-    detalleId: bigint;
+    ordenCompraId: number;
+    detalleId: number;
 }) => {
     return prisma.ordenCompraDetalle.create({ data });
 };
 
 // Obtener detalles de una orden
-export const getDetallesByOrden = async (ordenCompraId: bigint) => {
+export const getDetallesByOrden = async (ordenCompraId: number) => {
     return prisma.ordenCompraDetalle.findMany({
         where: { ordenCompraId },
         include: {
@@ -19,7 +19,7 @@ export const getDetallesByOrden = async (ordenCompraId: bigint) => {
 };
 
 // (Opcional) Eliminar un detalle de una orden
-export const removeDetalleFromOrden = async (ordenCompraId: bigint, detalleId: bigint) => {
+export const removeDetalleFromOrden = async (ordenCompraId: number, detalleId: number) => {
     return prisma.ordenCompraDetalle.delete({
         where: {
             ordenCompraId_detalleId: {

@@ -14,7 +14,7 @@ export const getAllImagenes = async (req: Request, res: Response) => {
 // GET /imagen/:id
 export const getImagenById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const imagen = await imagenService.getImagenById(id);
 
         if (!imagen) {
@@ -47,7 +47,7 @@ export const createImagen = async (req: Request, res: Response) => {
 // PUT /imagen/:id
 export const updateImagenById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const imagenActualizada = await imagenService.updateImagenById(id, req.body);
         res.json(imagenActualizada);
     } catch (error) {
@@ -58,7 +58,7 @@ export const updateImagenById = async (req: Request, res: Response) => {
 // DELETE /imagen/:id
 export const deleteImagen = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await imagenService.deleteImagenById(id);
         res.status(204).json({ message: "Imagen eliminada correctamente" });
     } catch (error) {

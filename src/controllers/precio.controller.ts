@@ -14,7 +14,7 @@ export const getPrecios = async (_req: Request, res: Response) => {
 // GET /precios/:id
 export const getPrecio = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const precio = await precioService.getAllPrecioById(id);
         if (!precio) {
             res.status(404).json({ error: "Precio no encontrado" });
@@ -46,7 +46,7 @@ export const createPrecio = async (req: Request, res: Response) => {
 // DELETE /precios/:id
 export const deletePrecio = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await precioService.deletePrecioById(id);
         res.json({ mensaje: "Precio eliminado con éxito" });
     } catch (error) {

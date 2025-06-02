@@ -11,7 +11,7 @@ export const getAllUsuarioDirecciones = async () => {
 };
 
 // Obtener una relación por ID
-export const getUsuarioDireccionById = async (id: bigint) => {
+export const getUsuarioDireccionById = async (id: number) => {
     return prisma.usuarioDireccion.findUnique({
         where: { id },
         include: {
@@ -22,7 +22,7 @@ export const getUsuarioDireccionById = async (id: bigint) => {
 };
 
 // Crear una nueva relación usuario-dirección
-export const createUsuarioDireccion = async (usuarioId: bigint, direccionId: bigint) => {
+export const createUsuarioDireccion = async (usuarioId: number, direccionId: number) => {
     // Verificar si ya existe
     const existente = await prisma.usuarioDireccion.findUnique({
         where: {
@@ -46,7 +46,7 @@ export const createUsuarioDireccion = async (usuarioId: bigint, direccionId: big
 };
 
 // Eliminar una relación por ID
-export const deleteUsuarioDireccion = async (id: bigint) => {
+export const deleteUsuarioDireccion = async (id: number) => {
     return prisma.usuarioDireccion.delete({
         where: { id },
     });

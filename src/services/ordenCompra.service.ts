@@ -15,7 +15,7 @@ export const getAllOrdenes = async () => {
 };
 
 // Obtener una orden por ID (con detalles)
-export const getOrdenById = async (id: bigint) => {
+export const getOrdenById = async (id: number) => {
     return prisma.ordenCompra.findUnique({
         where: { id },
         include: {
@@ -33,7 +33,7 @@ export const getOrdenById = async (id: bigint) => {
 export const createOrdenCompra = async (data: {
     fechaCompra: Date;
     total: number;
-    usuarioDireccionId: bigint;
+    usuarioDireccionId: number;
 }) => {
     return prisma.ordenCompra.create({
         data,

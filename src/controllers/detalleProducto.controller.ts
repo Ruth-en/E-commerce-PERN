@@ -14,7 +14,7 @@ export const getAllDetalleProductos = async (_req: Request, res: Response) => {
 // GET /detalles-productos/:id
 export const getDetallesProductoById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const detalle = await detalleService.getDetallesProductoById(id);
         if (!detalle) {
             res.status(404).json({ error: "Detalle de producto no encontrado" });
@@ -42,9 +42,9 @@ export const createDetallesProducto = async (req: Request, res: Response) => {
             marca,
             stock,
             estado,
-            productoId: BigInt(productoId),
-            talleId: BigInt(talleId),
-            precioId: BigInt(precioId)
+            productoId: Number(productoId),
+            talleId: Number(talleId),
+            precioId: Number(precioId)
         });
         res.status(201).json(nuevoDetalle);
     } catch (error: any) {
@@ -54,7 +54,7 @@ export const createDetallesProducto = async (req: Request, res: Response) => {
 
 // PUT /detalles-productos/:id
 export const updateDetallesProductoById = async (req: Request, res: Response) => {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
     const { color, marca, stock, estado, productoId, talleId, precioId } = req.body;
 
     try {
@@ -63,9 +63,9 @@ export const updateDetallesProductoById = async (req: Request, res: Response) =>
             marca,
             stock,
             estado,
-            productoId: BigInt(productoId),
-            talleId: BigInt(talleId),
-            precioId: BigInt(precioId)
+            productoId: Number(productoId),
+            talleId: Number(talleId),
+            precioId: Number(precioId)
         });
         res.json(detalleActualizado);
     } catch (error: any) {
@@ -76,7 +76,7 @@ export const updateDetallesProductoById = async (req: Request, res: Response) =>
 // DELETE /detalles-productos/:id
 export const deleteDetallesProductoById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await detalleService.deleteDetallesProductoById(id);
         res.json({ mensaje: "Detalle de producto eliminado con éxito" });
     } catch (error: any) {

@@ -12,8 +12,8 @@ export const addDescuentoToPrecio = async (req: Request, res: Response) => {
 
     try {
         const resultado = await precioDescuentoService.addDescuentoToPrecio({
-            precioId: BigInt(precioId),
-            descuentoId: BigInt(descuentoId),
+            precioId: Number(precioId),
+            descuentoId: Number(descuentoId),
         });
         res.status(201).json(resultado);
     } catch (error: any) {
@@ -33,8 +33,8 @@ export const removeDescuentoFromPrecio = async (req: Request, res: Response) => 
 
     try {
         const resultado = await precioDescuentoService.removeDescuentoFromPrecio({
-            precioId: BigInt(precioId),
-            descuentoId: BigInt(descuentoId),
+            precioId: Number(precioId),
+            descuentoId: Number(descuentoId),
         });
         res.json({ mensaje: "Relación Precio-Descuento eliminada", resultado });
     } catch (error: any) {
@@ -47,7 +47,7 @@ export const getDescuentosByPrecio = async (req: Request, res: Response) => {
     const { precioId } = req.params;
 
     try {
-        const descuentos = await precioDescuentoService.getDescuentosByPrecio(BigInt(precioId));
+        const descuentos = await precioDescuentoService.getDescuentosByPrecio(Number(precioId));
         res.json(descuentos);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener descuentos por precio" });
@@ -59,7 +59,7 @@ export const getPreciosByDescuento = async (req: Request, res: Response) => {
     const { descuentoId } = req.params;
 
     try {
-        const precios = await precioDescuentoService.getPreciosByDescuento(BigInt(descuentoId));
+        const precios = await precioDescuentoService.getPreciosByDescuento(Number(descuentoId));
         res.json(precios);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener precios por descuento" });

@@ -14,7 +14,7 @@ export const getAllUsuarioDirecciones = async (_req: Request, res: Response) => 
 // GET /usuario-direcciones/:id -> Obtener una relación por ID
 export const getUsuarioDireccionById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const relacion = await usuarioDireccionService.getUsuarioDireccionById(id);
         if (!relacion) {
             res.status(404).json({ error: "Relación no encontrada" });
@@ -37,8 +37,8 @@ export const createUsuarioDireccion = async (req: Request, res: Response) => {
 
     try {
         const nuevaRelacion = await usuarioDireccionService.createUsuarioDireccion(
-            BigInt(usuarioId),
-            BigInt(direccionId)
+            Number(usuarioId),
+            Number(direccionId)
         );
         res.status(201).json(nuevaRelacion);
     } catch (error: any) {
@@ -49,7 +49,7 @@ export const createUsuarioDireccion = async (req: Request, res: Response) => {
 // DELETE /usuario-direcciones/:id -> Eliminar una relación por ID
 export const deleteUsuarioDireccion = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await usuarioDireccionService.deleteUsuarioDireccion(id);
         res.json({ mensaje: "Relación eliminada correctamente" });
     } catch (error: any) {

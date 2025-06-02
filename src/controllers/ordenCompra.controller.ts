@@ -14,7 +14,7 @@ export const getAllOrdenes = async (_req: Request, res: Response) => {
 // GET /ordenes/:id
 export const getOrdenById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const orden = await ordenService.getOrdenById(id);
         if (!orden) {
             res.status(404).json({ error: "Orden no encontrada" });
@@ -41,7 +41,7 @@ export const createOrdenCompra = async (req: Request, res: Response) => {
         const nuevaOrden = await ordenService.createOrdenCompra({
             fechaCompra: new Date(fechaCompra),
             total,
-            usuarioDireccionId: BigInt(usuarioDireccionId),
+            usuarioDireccionId: Number(usuarioDireccionId),
         });
         res.status(201).json(nuevaOrden);
     } catch (error: any) {

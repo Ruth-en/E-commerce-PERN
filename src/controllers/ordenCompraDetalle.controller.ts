@@ -12,8 +12,8 @@ export const addDetalleToOrden = async (req: Request, res: Response) => {
 
     try {
         const relacion = await ordenDetalleService.addDetalleToOrden({
-            ordenCompraId: BigInt(ordenCompraId),
-            detalleId: BigInt(detalleId),
+            ordenCompraId: Number(ordenCompraId),
+            detalleId: Number(detalleId),
         });
         res.status(201).json(relacion);
     } catch (error: any) {
@@ -24,7 +24,7 @@ export const addDetalleToOrden = async (req: Request, res: Response) => {
 // GET /orden-detalle/:ordenCompraId
 export const getDetallesByOrden = async (req: Request, res: Response) => {
     try {
-        const ordenCompraId = BigInt(req.params.ordenCompraId);
+        const ordenCompraId = Number(req.params.ordenCompraId);
         const detalles = await ordenDetalleService.getDetallesByOrden(ordenCompraId);
         res.json(detalles);
     } catch (error: any) {
@@ -35,8 +35,8 @@ export const getDetallesByOrden = async (req: Request, res: Response) => {
 // DELETE /orden-detalle/:ordenCompraId/:detalleId
 export const removeDetalleFromOrden = async (req: Request, res: Response) => {
     try {
-        const ordenCompraId = BigInt(req.params.ordenCompraId);
-        const detalleId = BigInt(req.params.detalleId);
+        const ordenCompraId = Number(req.params.ordenCompraId);
+        const detalleId = Number(req.params.detalleId);
         await ordenDetalleService.removeDetalleFromOrden(ordenCompraId, detalleId);
         res.json({ message: "Detalle eliminado de la orden correctamente" });
     } catch (error: any) {

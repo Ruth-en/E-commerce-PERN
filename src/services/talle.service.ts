@@ -6,7 +6,7 @@ export const getAllTalles = async () => {
 }
 
 //Obtener un Talle por ID
-export const getTalleById = async (id: bigint) => {
+export const getTalleById = async (id: number) => {
     return prisma.talle.findUnique({ where: { id } })
 }
 
@@ -16,11 +16,11 @@ export const createTalle = async (data: { numero: string }) => {
 }
 
 // Actualizar un Talle por ID
-export const updateTalleById = async (id: bigint, data: { numero: string }) => {
+export const updateTalleById = async (id: number, data: { numero: string }) => {
     return prisma.talle.update({ where: { id }, data })
 }
 
 //Eliminar un Talle por ID
-export const deleteTalleById = async (id: bigint) => {
+export const deleteTalleById = async (id: number) => {
     return prisma.talle.delete({ where: { id } })
 }

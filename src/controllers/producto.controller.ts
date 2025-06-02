@@ -14,7 +14,7 @@ export const getAllProductos = async (_req: Request, res: Response) => {
 // GET /productos/:id -> Obtener un producto por ID
 export const getProductoById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const producto = await productoService.getProductoById(id);
         if (!producto) {
             res.status(404).json({ error: "Producto no encontrado" });
@@ -45,7 +45,7 @@ export const createProducto = async (req: Request, res: Response) => {
             nombre,
             sexo,
             tipoProducto,
-            categoriaId: BigInt(categoriaId),
+            categoriaId: Number(categoriaId),
         });
         res.status(201).json(nuevoProducto);
     } catch (error: any) {
@@ -55,7 +55,7 @@ export const createProducto = async (req: Request, res: Response) => {
 
 // PUT /productos/:id -> Editar un producto por ID
 export const updateProductoById = async (req: Request, res: Response) => {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
     const { nombre, sexo, tipoProducto, categoriaId } = req.body;
 
     if (
@@ -73,7 +73,7 @@ export const updateProductoById = async (req: Request, res: Response) => {
             nombre,
             sexo,
             tipoProducto,
-            categoriaId: BigInt(categoriaId),
+            categoriaId: Number(categoriaId),
         });
         res.json(productoActualizado);
     } catch (error: any) {
@@ -84,7 +84,7 @@ export const updateProductoById = async (req: Request, res: Response) => {
 // DELETE /productos/:id -> Eliminar un producto por ID
 export const deleteProductoById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await productoService.deleteProductoById(id);
         res.json({ mensaje: "Producto eliminado correctamente" });
     } catch (error: any) {

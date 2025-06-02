@@ -6,7 +6,7 @@ export const getAllDetalleProductos = async () => {
 }
 
 //Obtener un DetallesProducto por ID
-export const getDetallesProductoById = async (id: bigint) => {
+export const getDetallesProductoById = async (id: number) => {
     return prisma.detalle.findUnique({ where: { id } });
 }
 
@@ -16,27 +16,27 @@ export const createDetallesProducto = async (data: {
     marca: string
     stock: number
     estado: boolean
-    productoId: bigint
-    talleId: bigint
-    precioId: bigint
+    productoId: number
+    talleId: number
+    precioId: number
 }) => {
     return prisma.detalle.create({ data });
 }
 
 // Actualizar un DetallesProducto por ID
-export const updateDetallesProductoById = async (id: bigint, data: {
+export const updateDetallesProductoById = async (id: number, data: {
     color: string
     marca: string
     stock: number
     estado: boolean
-    productoId: bigint
-    talleId: bigint
-    precioId: bigint
+    productoId: number
+    talleId: number
+    precioId: number
 }) => {
     return prisma.detalle.update({ where: { id }, data });
 }
 
 //Eliminar un DetallesProducto por ID
-export const deleteDetallesProductoById = async (id: bigint) => {
+export const deleteDetallesProductoById = async (id: number) => {
     return prisma.detalle.delete({ where: { id } });
 }

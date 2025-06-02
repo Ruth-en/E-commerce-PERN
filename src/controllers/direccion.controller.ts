@@ -18,7 +18,7 @@ export const getDirecciones = async (_req: Request, res: Response) => {
 
 export const getDireccion = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const direccion = await getAllDireccionesById(id);
 
         if (!direccion) {
@@ -44,7 +44,7 @@ export const createNuevaDireccion = async (req: Request, res: Response) => {
 
 export const updateDireccion = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         const data = req.body;
 
         const direccion = await updateDireccionById(id, data);
@@ -56,7 +56,7 @@ export const updateDireccion = async (req: Request, res: Response) => {
 
 export const deleteDireccionById = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await deleteDireccion(id);
         res.json({ message: "Dirección eliminada correctamente" });
     } catch (error) {

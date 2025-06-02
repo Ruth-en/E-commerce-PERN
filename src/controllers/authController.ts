@@ -8,7 +8,7 @@ import { createUsuario } from '../services/usuarios.service';
 
 //Registo del usuario
 export const register = async (req: Request, res: Response): Promise<void> => {
-    const { nombre, email, contrasena, dni, rol, direccion } = req.body;
+    const { nombre, email, contrasena, dni, rol } = req.body;
     console.log('Request body:', req.body);
     try {
         if (!nombre || !email || !contrasena || !dni || !rol) {
@@ -32,14 +32,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
                 email,
                 contrasena: hash,
                 dni,
-                rol,
+                rol
+                //direccion?
         });
 
         //Crear direccion
-        const nuevaDireccion = await createDireccion(direccion); //cambiar por las campos del formulario
+        //const nuevaDireccion = await createDireccion(direccion); //cambiar por las campos del formulario
 
         //Relacion usuario-direccion
-        await createUsuarioDireccion(nuevoUsuario.id, nuevaDireccion.id);
+        //await createUsuarioDireccion(nuevoUsuario.id, nuevaDireccion.id);
 
         //Genera un token JWT
         const token = generarToken({ id: nuevoUsuario.id.toString(), rol: nuevoUsuario.rol });

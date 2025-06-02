@@ -20,6 +20,6 @@ export const createDescuento = async (data: {
 };
 
 // Elimiar descuento
-export const deleteDescuento = async (id: bigint) => {
+export const deleteDescuento = async (id: number) => {
     return prisma.descuento.delete({ where: { id } })
 }

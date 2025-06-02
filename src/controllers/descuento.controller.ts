@@ -30,7 +30,7 @@ export const createDescuento = async (req: Request, res: Response) => {
 // DELETE /descuento/:id
 export const deleteDescuento = async (req: Request, res: Response) => {
     try {
-        const id = BigInt(req.params.id);
+        const id = Number(req.params.id);
         await descuentoServie.deleteDescuento(id);
         res.status(204).json({ message: "Descuento eliminado correctamente" });
     } catch (error) {

@@ -20,7 +20,7 @@ enum Rol {
 }
 
 model Usuario {
-  id         BigInt @id @default(autoincrement())
+  id         Int    @id @default(autoincrement())
   nombre     String
   email      String @unique
   contrasena String
@@ -32,7 +32,7 @@ model Usuario {
 }
 
 model Direccion {
-  id           BigInt @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   pais         String
   provincia    String
   departamento String
@@ -43,9 +43,9 @@ model Direccion {
 }
 
 model UsuarioDireccion {
-  id          BigInt @id @default(autoincrement())
-  usuarioId   BigInt @map("usuario_id")
-  direccionId BigInt @map("direccion_id")
+  id          Int @id @default(autoincrement())
+  usuarioId   Int @map("usuario_id")
+  direccionId Int @map("direccion_id")
 
   //relación gestionada por UsuarioDireccion
   usuario   Usuario   @relation(fields: [usuarioId], references: [id]) //claves foráneas con fields y references
@@ -58,18 +58,19 @@ model UsuarioDireccion {
 }
 
 model Categoria {
-  id     BigInt @id @default(autoincrement())
+  id     Int    @id @default(autoincrement())
   nombre String
 
+  //relación
   productos Producto[]
 }
 
 model Producto {
-  id           BigInt @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   nombre       String
   sexo         String
   tipoProducto Int
-  categoriaId  BigInt
+  categoriaId  Int
 
   //Relacion getionada por Producto
   categoria Categoria @relation(fields: [categoriaId], references: [id]) //claves foráneas con fields y references
@@ -81,14 +82,14 @@ model Producto {
 }
 
 model Detalle {
-  id         BigInt  @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   color      String
   marca      String
   stock      Int
   estado     Boolean
-  productoId BigInt
-  talleId    BigInt
-  precioId   BigInt
+  productoId Int
+  talleId    Int
+  precioId   Int
 
   //Relacion getionada por Detalle
   producto Producto @relation(fields: [productoId], references: [id])
@@ -105,7 +106,7 @@ model Detalle {
 }
 
 model Talle {
-  id     BigInt @id @default(autoincrement())
+  id     Int    @id @default(autoincrement())
   numero String
 
   //Relaciones 
@@ -115,20 +116,21 @@ model Talle {
 }
 
 model Imagen {
-  id  BigInt @id @default(autoincrement())
+  id  Int    @id @default(autoincrement())
   url String
 
+  //Relaciones 
   detalleImagenes DetalleImagen[]
 
   @@map("imagen")
 }
 
 model DetalleImagen {
-  id BigInt @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   // Relaciones
-  detalleId BigInt
-  imagenId  BigInt
+  detalleId Int
+  imagenId  Int
 
   //Relacion getionada por DetalleImagen
   detalle Detalle @relation(fields: [detalleId], references: [id])
@@ -138,7 +140,7 @@ model DetalleImagen {
 }
 
 model Descuento {
-  id          BigInt   @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   fechaInicio DateTime @map("fecha_inicio")
   fechaFinal  DateTime @map("fecha_final")
   porcentaje  Float
@@ -149,9 +151,9 @@ model Descuento {
 }
 
 model Precio {
-  id           BigInt @id @default(autoincrement())
-  precioCompra Float  @map("precio_compra")
-  precioVenta  Float  @map("precio_venta")
+  id           Int   @id @default(autoincrement())
+  precioCompra Float @map("precio_compra")
+  precioVenta  Float @map("precio_venta")
 
   detalles   Detalle[] // Relación 1:N con Detalle
   descuentos PrecioDescuento[] // Relación N:N con Descuento
@@ -160,8 +162,8 @@ model Precio {
 }
 
 model PrecioDescuento {
-  precioId    BigInt
-  descuentoId BigInt
+  precioId    Int
+  descuentoId Int
 
   //Relacion getionada por PrecioDescuento
   precio    Precio    @relation(fields: [precioId], references: [id])
@@ -172,10 +174,10 @@ model PrecioDescuento {
 }
 
 model OrdenCompra {
-  id                 BigInt   @id @default(autoincrement())
+  id                 Int      @id @default(autoincrement())
   fechaCompra        DateTime @map("fecha_compra")
   total              Float
-  usuarioDireccionId BigInt   @map("id_usuario_direccion")
+  usuarioDireccionId Int      @map("id_usuario_direccion")
 
   //Relacion getionada por OrdenCompra
   usuarioDireccion UsuarioDireccion @relation(fields: [usuarioDireccionId], references: [id])
@@ -187,8 +189,8 @@ model OrdenCompra {
 }
 
 model OrdenCompraDetalle {
-  ordenCompraId BigInt @map("orden_compra_id")
-  detalleId     BigInt
+  ordenCompraId Int @map("orden_compra_id")
+  detalleId     Int
 
   ordenCompra OrdenCompra @relation(fields: [ordenCompraId], references: [id])
   detalle     Detalle     @relation(fields: [detalleId], references: [id])

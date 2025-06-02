@@ -13,7 +13,7 @@ export const getAllDetalleImagenes = async (_req: Request, res: Response) => {
 
 // GET /detalle-imagen/:detalleId
 export const getDetalleImagenById = async (req: Request, res: Response) => {
-    const id = BigInt(req.params.detalleId);
+    const id = Number(req.params.detalleId);
     try {
         const relacion = await detalleImagenService.getDetalleImagenById(id);
         if (!relacion) {
@@ -37,8 +37,8 @@ export const addImagenToDetalleProducto = async (req: Request, res: Response) =>
 
     try {
         const resultado = await detalleImagenService.addImagenToDetalleProducto({
-            detalleId: BigInt(detalleId),
-            imagenId: BigInt(imagenId),
+            detalleId: Number(detalleId),
+            imagenId: Number(imagenId),
         });
         res.status(201).json(resultado);
     } catch (error: any) {
@@ -48,7 +48,7 @@ export const addImagenToDetalleProducto = async (req: Request, res: Response) =>
 
 // DELETE /detalle-imagen/:id
 export const deleteDetalleImagenById = async (req: Request, res: Response) => {
-    const id = BigInt(req.params.id);
+    const id = Number(req.params.id);
     try {
         await detalleImagenService.deleteDetalleImagenById(id);
         res.json({ message: "Relación detalle-imagen eliminada correctamente" });
