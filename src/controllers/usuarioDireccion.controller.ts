@@ -5,7 +5,7 @@ import * as usuarioDireccionService from "../services/usuarioDireccion.service";
 export const getAllUsuarioDirecciones = async (_req: Request, res: Response) => {
     try {
         const relaciones = await usuarioDireccionService.getAllUsuarioDirecciones();
-        res.json(relaciones);
+        res.status(200).json(relaciones);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener las relaciones usuario-dirección" });
     }
@@ -20,7 +20,7 @@ export const getUsuarioDireccionById = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Relación no encontrada" });
             return
         }
-        res.json(relacion);
+        res.status(200).json(relacion);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener la relación usuario-dirección" });
     }
@@ -51,7 +51,7 @@ export const deleteUsuarioDireccion = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         await usuarioDireccionService.deleteUsuarioDireccion(id);
-        res.json({ mensaje: "Relación eliminada correctamente" });
+        res.status(200).json({ mensaje: "Relación eliminada correctamente" });
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al eliminar la relación usuario-dirección" });
     }

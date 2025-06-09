@@ -5,7 +5,7 @@ import * as ordenService from "../services/ordenCompra.service";
 export const getAllOrdenes = async (_req: Request, res: Response) => {
     try {
         const ordenes = await ordenService.getAllOrdenes();
-        res.json(ordenes);
+        res.status(200).json(ordenes);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener las órdenes" });
     }
@@ -20,7 +20,7 @@ export const getOrdenById = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Orden no encontrada" });
             return
         }
-        res.json(orden);
+        res.status(200).json(orden);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener la orden" });
     }
@@ -48,3 +48,20 @@ export const createOrdenCompra = async (req: Request, res: Response) => {
         res.status(400).json({ error: error.message || "Error al crear la orden" });
     }
 };
+
+// DLETE/api/ordenes/:id
+export const deleteOrdenCompra = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    try {
+        const orden = await ordenService.getOrdenById(id);
+        if (!orden) {
+            res.status(404).json({ error: `La orden de compra (${id}) que quiere eliminar no se encuentra.` });
+            return
+        }
+        await ordenService.deleteOrdenCompra(id)
+        res.status(200).json({ message: "Orden de compra eliminado correctamente" });
+    } catch (error: any) {
+        res.status(500).json({ error: error.message || "Error al eliminar la orden de compra" }); 
+    }
+
+}

@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 export const getAllDescuentos = async (req: Request, res: Response) => {
     try {
         const descuentos = await descuentoServie.getAllDescuentos();
-        res.json(descuentos);
+        res.status(200).json(descuentos);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener los descuentos" });
     }
@@ -20,7 +20,18 @@ export const createDescuento = async (req: Request, res: Response) => {
             res.status(400).json({ error: "Todos los campos son requeridos" });
             return
         }
-        const newDescuento = await descuentoServie.createDescuento(req.body);
+
+        if (isNaN(porcentaje) || porcentaje < 0 || porcentaje > 100) {
+            res.status(400).json({ error: "El porcentaje debe ser un número entre 0 y 100" });
+            return
+        }
+
+        const newDescuento = await descuentoServie.createDescuento({
+            fechaInicio,
+            fechaFinal,
+            porcentaje: Number(porcentaje)
+        });
+        
         res.status(201).json(newDescuento);
     } catch (error) {
         res.status(400).json({ error: "Error al crear una descuento" });
@@ -31,9 +42,14 @@ export const createDescuento = async (req: Request, res: Response) => {
 export const deleteDescuento = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            res.status(400).json({ error: "ID inválido" });
+            return
+        }
         await descuentoServie.deleteDescuento(id);
         res.status(204).json({ message: "Descuento eliminado correctamente" });
     } catch (error) {
-        res.status(400).json({ error: "Error al eliminar el descuento" });
+        res.status(500).json({ error: "Error al eliminar el descuento" });
     }
 };

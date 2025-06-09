@@ -4,8 +4,14 @@ import { prisma } from "../models";
 export const addDetalleToOrden = async (data: {
     ordenCompraId: number;
     detalleId: number;
+    cantidad: number;
 }) => {
     return prisma.ordenCompraDetalle.create({ data });
+};
+
+// obtener todos los detalles de orden
+export const getAllDetalles = async () => {
+    return prisma.ordenCompraDetalle.findMany();
 };
 
 // Obtener detalles de una orden

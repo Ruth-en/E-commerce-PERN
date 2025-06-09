@@ -10,15 +10,7 @@ import {
 import { authenticateToken } from "../middlewares/auth";
 
 const usuarioRouter = Router();
-/**
- * @openapi
- * /usuarios:
- *   get:
- *     summary: Obtener todos los usuarios
- *     responses:
- *       200:
- *         description: Lista de usuarios
- */
+
 usuarioRouter.get("/", authenticateToken, getUsuarios);
 usuarioRouter.get("/:id", authenticateToken, getUsuarioById);
 usuarioRouter.post("/", authenticateToken, createUsuario);

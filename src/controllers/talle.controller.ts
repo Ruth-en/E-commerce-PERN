@@ -5,7 +5,7 @@ import * as talleService from "../services/talle.service";
 export const getAllTalles = async (req: Request, res: Response) => {
     try {
         const talles = await talleService.getAllTalles();
-        res.json(talles);
+        res.status(200).json(talles);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener talles" });
     }
@@ -22,7 +22,7 @@ export const getTalleById = async (req: Request, res: Response) => {
             return
         }
 
-        res.json(talle);
+        res.status(200).json(talle);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener el talle" });
     }
@@ -40,6 +40,7 @@ export const createTalle = async (req: Request, res: Response) => {
         const talle = await talleService.createTalle(numero);
         res.status(201).json(talle);
     } catch (error) {
+        console.error(error);
         res.status(400).json({ error: "Error al crear talle" });
     }
 };
@@ -49,7 +50,7 @@ export const updateTalleById = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         const talle = await talleService.updateTalleById(id, req.body);
-        res.json(talle);
+        res.status(200).json(talle);
     } catch (error) {
         res.status(400).json({ error: "Error al actualizar talle" });
     }

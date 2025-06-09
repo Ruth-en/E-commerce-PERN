@@ -55,7 +55,7 @@ export const updateUsuario = async (req: Request, res: Response) => {
         }
 
         const usuarioActualizado = await usuarioService.updateUsuario(id, usuarioEditado);
-        res.json(usuarioActualizado);
+        res.status(201).json(usuarioActualizado);
     } catch (error) {
         res.status(500).json({ error: "Error al actualizar el usuario" });
     }

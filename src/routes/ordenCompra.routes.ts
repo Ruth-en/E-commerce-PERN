@@ -13,4 +13,6 @@ ordenCompraRouter.get("/:id", authenticateToken, ordenCompraController.getOrdenB
 // POST /ordenes
 ordenCompraRouter.post("/", authenticateToken, ordenCompraController.createOrdenCompra);
 
+// DELETE/ordenes/:id
+ordenCompraRouter.delete("/:id", authenticateToken, ordenCompraController.deleteOrdenCompra);
 export default ordenCompraRouter;

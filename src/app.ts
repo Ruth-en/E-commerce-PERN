@@ -1,6 +1,4 @@
 import express from 'express';
-import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from './config/swagger';
 import authRouter from "./routes/authRoutes";
 import dotenv from "dotenv";
 import talleRouter from './routes/talle.routes';
@@ -24,26 +22,24 @@ const app = express();
 app.use(express.json());
 
 //Rutas
-app.use("/api/talle", talleRouter);
-app.use("/api/imagene", imagenRouter);
-app.use("/api/categoria", categoriasRouter);
-app.use("/api/descuento", descuentoRouter);
-app.use("/api/direccion", direccionRouter);
-app.use("/api/precio", precioRouter);
-app.use("/api", precioDescRouter);
-app.use("/api/producto", productoRouter);
-app.use("/api/usuario-direcciones", usuarioDirecRouter);
-app.use("/api/ordenes", ordenCompraRouter);
-app.use("/api/detalles-productos", detalleProdRouter);
-app.use("/api/detalle-imagen", detalleImagenRouter);
-app.use("/api/orden-detalle", ordenDetalleRouter);
+app.use("/api/talle", talleRouter); //
+app.use("/api/imagen", imagenRouter); //
+app.use("/api/categoria", categoriasRouter); //
+app.use("/api/descuento", descuentoRouter); //
+app.use("/api/direccion", direccionRouter); //
+app.use("/api/precio", precioRouter); //
+app.use("/api", precioDescRouter); //
+app.use("/api/producto", productoRouter); //
+app.use("/api/usuario-direcciones", usuarioDirecRouter); //
+app.use("/api/ordenes", ordenCompraRouter); //
+app.use("/api/detalles-productos", detalleProdRouter);//
+app.use("/api/detalle-imagen", detalleImagenRouter); // Falta put
+app.use("/api/orden-detalle", ordenDetalleRouter); // VER
 
 
 //apirest de usuarios
-app.use('/api/auth', authRouter);
-app.use('/api/usuario', usuarioRouter);
+app.use('/api/auth', authRouter); //
+app.use('/api/usuario', usuarioRouter); //
 
-// Ruta de documentación Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default app;

@@ -5,7 +5,7 @@ import * as precioService from "../services/precio.service";
 export const getPrecios = async (_req: Request, res: Response) => {
     try {
         const precios = await precioService.getAllPrecios();
-        res.json(precios);
+        res.status(200).json(precios);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener los precios" });
     }
@@ -20,7 +20,7 @@ export const getPrecio = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Precio no encontrado" });
             return;
         }
-        res.json(precio);
+        res.status(200).json(precio);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener el precio" });
     }
@@ -48,7 +48,7 @@ export const deletePrecio = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         await precioService.deletePrecioById(id);
-        res.json({ mensaje: "Precio eliminado con éxito" });
+        res.status(200).json({ mensaje: "Precio eliminado con éxito" });
     } catch (error) {
         res.status(500).json({ error: "Error al eliminar el precio" });
     }

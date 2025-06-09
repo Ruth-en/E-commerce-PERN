@@ -11,8 +11,8 @@ export const getTalleById = async (id: number) => {
 }
 
 // Crear Talle
-export const createTalle = async (data: { numero: string }) => {
-    return prisma.talle.create({ data });
+export const createTalle = async ( numero: string ) => {
+    return prisma.talle.create({ data:{ numero} });
 }
 
 // Actualizar un Talle por ID

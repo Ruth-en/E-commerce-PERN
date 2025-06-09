@@ -5,7 +5,7 @@ import * as imagenService from "../services/imagen.service"
 export const getAllImagenes = async (req: Request, res: Response) => {
     try {
         const imagenes = await imagenService.getAllImagen();
-        res.json(imagenes);
+        res.status(200).json(imagenes);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener las imagenes" });
     }
@@ -22,7 +22,7 @@ export const getImagenById = async (req: Request, res: Response) => {
             return
         }
 
-        res.json(imagen);
+        res.status(200).json(imagen);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener la imagen" });
     }
@@ -49,7 +49,7 @@ export const updateImagenById = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         const imagenActualizada = await imagenService.updateImagenById(id, req.body);
-        res.json(imagenActualizada);
+        res.status(201).json(imagenActualizada);
     } catch (error) {
         res.status(400).json({ error: "Error al actualizar la imagen" });
     }

@@ -5,7 +5,7 @@ import * as detalleService from "../services/detalleProducto.service";
 export const getAllDetalleProductos = async (_req: Request, res: Response) => {
     try {
         const detalles = await detalleService.getAllDetalleProductos();
-        res.json(detalles);
+        res.status(200).json(detalles);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener los detalles de productos" });
     }
@@ -20,7 +20,7 @@ export const getDetallesProductoById = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Detalle de producto no encontrado" });
             return
         }
-        res.json(detalle);
+        res.status(200).json(detalle);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener el detalle de producto" });
     }
@@ -67,7 +67,7 @@ export const updateDetallesProductoById = async (req: Request, res: Response) =>
             talleId: Number(talleId),
             precioId: Number(precioId)
         });
-        res.json(detalleActualizado);
+        res.status(201).json(detalleActualizado);
     } catch (error: any) {
         res.status(400).json({ error: error.message || "Error al actualizar el detalle del producto" });
     }
@@ -78,7 +78,7 @@ export const deleteDetallesProductoById = async (req: Request, res: Response) =>
     try {
         const id = Number(req.params.id);
         await detalleService.deleteDetallesProductoById(id);
-        res.json({ mensaje: "Detalle de producto eliminado con éxito" });
+        res.status(200).json({ mensaje: "Detalle de producto eliminado con éxito" });
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al eliminar el detalle del producto" });
     }

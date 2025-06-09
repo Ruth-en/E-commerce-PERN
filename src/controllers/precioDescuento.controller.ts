@@ -36,7 +36,7 @@ export const removeDescuentoFromPrecio = async (req: Request, res: Response) => 
             precioId: Number(precioId),
             descuentoId: Number(descuentoId),
         });
-        res.json({ mensaje: "Relación Precio-Descuento eliminada", resultado });
+        res.status(200).json({ mensaje: "Relación Precio-Descuento eliminada", resultado });
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al eliminar relación Precio-Descuento" });
     }
@@ -48,7 +48,7 @@ export const getDescuentosByPrecio = async (req: Request, res: Response) => {
 
     try {
         const descuentos = await precioDescuentoService.getDescuentosByPrecio(Number(precioId));
-        res.json(descuentos);
+        res.status(200).json(descuentos);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener descuentos por precio" });
     }
@@ -60,8 +60,9 @@ export const getPreciosByDescuento = async (req: Request, res: Response) => {
 
     try {
         const precios = await precioDescuentoService.getPreciosByDescuento(Number(descuentoId));
-        res.json(precios);
+        res.status(200).json(precios);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener precios por descuento" });
     }
 };
+

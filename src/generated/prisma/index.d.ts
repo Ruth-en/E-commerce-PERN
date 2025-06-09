@@ -16794,26 +16794,31 @@ export namespace Prisma {
   export type OrdenCompraDetalleAvgAggregateOutputType = {
     ordenCompraId: number | null
     detalleId: number | null
+    cantidad: number | null
   }
 
   export type OrdenCompraDetalleSumAggregateOutputType = {
     ordenCompraId: number | null
     detalleId: number | null
+    cantidad: number | null
   }
 
   export type OrdenCompraDetalleMinAggregateOutputType = {
     ordenCompraId: number | null
     detalleId: number | null
+    cantidad: number | null
   }
 
   export type OrdenCompraDetalleMaxAggregateOutputType = {
     ordenCompraId: number | null
     detalleId: number | null
+    cantidad: number | null
   }
 
   export type OrdenCompraDetalleCountAggregateOutputType = {
     ordenCompraId: number
     detalleId: number
+    cantidad: number
     _all: number
   }
 
@@ -16821,26 +16826,31 @@ export namespace Prisma {
   export type OrdenCompraDetalleAvgAggregateInputType = {
     ordenCompraId?: true
     detalleId?: true
+    cantidad?: true
   }
 
   export type OrdenCompraDetalleSumAggregateInputType = {
     ordenCompraId?: true
     detalleId?: true
+    cantidad?: true
   }
 
   export type OrdenCompraDetalleMinAggregateInputType = {
     ordenCompraId?: true
     detalleId?: true
+    cantidad?: true
   }
 
   export type OrdenCompraDetalleMaxAggregateInputType = {
     ordenCompraId?: true
     detalleId?: true
+    cantidad?: true
   }
 
   export type OrdenCompraDetalleCountAggregateInputType = {
     ordenCompraId?: true
     detalleId?: true
+    cantidad?: true
     _all?: true
   }
 
@@ -16933,6 +16943,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleGroupByOutputType = {
     ordenCompraId: number
     detalleId: number
+    cantidad: number
     _count: OrdenCompraDetalleCountAggregateOutputType | null
     _avg: OrdenCompraDetalleAvgAggregateOutputType | null
     _sum: OrdenCompraDetalleSumAggregateOutputType | null
@@ -16957,6 +16968,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     ordenCompraId?: boolean
     detalleId?: boolean
+    cantidad?: boolean
     ordenCompra?: boolean | OrdenCompraDefaultArgs<ExtArgs>
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ordenCompraDetalle"]>
@@ -16964,6 +16976,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     ordenCompraId?: boolean
     detalleId?: boolean
+    cantidad?: boolean
     ordenCompra?: boolean | OrdenCompraDefaultArgs<ExtArgs>
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ordenCompraDetalle"]>
@@ -16971,6 +16984,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     ordenCompraId?: boolean
     detalleId?: boolean
+    cantidad?: boolean
     ordenCompra?: boolean | OrdenCompraDefaultArgs<ExtArgs>
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ordenCompraDetalle"]>
@@ -16978,9 +16992,10 @@ export namespace Prisma {
   export type OrdenCompraDetalleSelectScalar = {
     ordenCompraId?: boolean
     detalleId?: boolean
+    cantidad?: boolean
   }
 
-  export type OrdenCompraDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"ordenCompraId" | "detalleId", ExtArgs["result"]["ordenCompraDetalle"]>
+  export type OrdenCompraDetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"ordenCompraId" | "detalleId" | "cantidad", ExtArgs["result"]["ordenCompraDetalle"]>
   export type OrdenCompraDetalleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ordenCompra?: boolean | OrdenCompraDefaultArgs<ExtArgs>
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
@@ -17003,6 +17018,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       ordenCompraId: number
       detalleId: number
+      cantidad: number
     }, ExtArgs["result"]["ordenCompraDetalle"]>
     composites: {}
   }
@@ -17430,6 +17446,7 @@ export namespace Prisma {
   interface OrdenCompraDetalleFieldRefs {
     readonly ordenCompraId: FieldRef<"OrdenCompraDetalle", 'Int'>
     readonly detalleId: FieldRef<"OrdenCompraDetalle", 'Int'>
+    readonly cantidad: FieldRef<"OrdenCompraDetalle", 'Int'>
   }
     
 
@@ -17987,7 +18004,8 @@ export namespace Prisma {
 
   export const OrdenCompraDetalleScalarFieldEnum: {
     ordenCompraId: 'ordenCompraId',
-    detalleId: 'detalleId'
+    detalleId: 'detalleId',
+    cantidad: 'cantidad'
   };
 
   export type OrdenCompraDetalleScalarFieldEnum = (typeof OrdenCompraDetalleScalarFieldEnum)[keyof typeof OrdenCompraDetalleScalarFieldEnum]
@@ -18796,6 +18814,7 @@ export namespace Prisma {
     NOT?: OrdenCompraDetalleWhereInput | OrdenCompraDetalleWhereInput[]
     ordenCompraId?: IntFilter<"OrdenCompraDetalle"> | number
     detalleId?: IntFilter<"OrdenCompraDetalle"> | number
+    cantidad?: IntFilter<"OrdenCompraDetalle"> | number
     ordenCompra?: XOR<OrdenCompraScalarRelationFilter, OrdenCompraWhereInput>
     detalle?: XOR<DetalleScalarRelationFilter, DetalleWhereInput>
   }
@@ -18803,6 +18822,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleOrderByWithRelationInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
     ordenCompra?: OrdenCompraOrderByWithRelationInput
     detalle?: DetalleOrderByWithRelationInput
   }
@@ -18814,6 +18834,7 @@ export namespace Prisma {
     NOT?: OrdenCompraDetalleWhereInput | OrdenCompraDetalleWhereInput[]
     ordenCompraId?: IntFilter<"OrdenCompraDetalle"> | number
     detalleId?: IntFilter<"OrdenCompraDetalle"> | number
+    cantidad?: IntFilter<"OrdenCompraDetalle"> | number
     ordenCompra?: XOR<OrdenCompraScalarRelationFilter, OrdenCompraWhereInput>
     detalle?: XOR<DetalleScalarRelationFilter, DetalleWhereInput>
   }, "ordenCompraId_detalleId">
@@ -18821,6 +18842,7 @@ export namespace Prisma {
   export type OrdenCompraDetalleOrderByWithAggregationInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
     _count?: OrdenCompraDetalleCountOrderByAggregateInput
     _avg?: OrdenCompraDetalleAvgOrderByAggregateInput
     _max?: OrdenCompraDetalleMaxOrderByAggregateInput
@@ -18834,6 +18856,7 @@ export namespace Prisma {
     NOT?: OrdenCompraDetalleScalarWhereWithAggregatesInput | OrdenCompraDetalleScalarWhereWithAggregatesInput[]
     ordenCompraId?: IntWithAggregatesFilter<"OrdenCompraDetalle"> | number
     detalleId?: IntWithAggregatesFilter<"OrdenCompraDetalle"> | number
+    cantidad?: IntWithAggregatesFilter<"OrdenCompraDetalle"> | number
   }
 
   export type UsuarioCreateInput = {
@@ -19461,6 +19484,7 @@ export namespace Prisma {
   }
 
   export type OrdenCompraDetalleCreateInput = {
+    cantidad?: number
     ordenCompra: OrdenCompraCreateNestedOneWithoutDetallesInput
     detalle: DetalleCreateNestedOneWithoutOrdenesItemsInput
   }
@@ -19468,9 +19492,11 @@ export namespace Prisma {
   export type OrdenCompraDetalleUncheckedCreateInput = {
     ordenCompraId: number
     detalleId: number
+    cantidad?: number
   }
 
   export type OrdenCompraDetalleUpdateInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     ordenCompra?: OrdenCompraUpdateOneRequiredWithoutDetallesNestedInput
     detalle?: DetalleUpdateOneRequiredWithoutOrdenesItemsNestedInput
   }
@@ -19478,20 +19504,23 @@ export namespace Prisma {
   export type OrdenCompraDetalleUncheckedUpdateInput = {
     ordenCompraId?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrdenCompraDetalleCreateManyInput = {
     ordenCompraId: number
     detalleId: number
+    cantidad?: number
   }
 
   export type OrdenCompraDetalleUpdateManyMutationInput = {
-
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrdenCompraDetalleUncheckedUpdateManyInput = {
     ordenCompraId?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -20179,26 +20208,31 @@ export namespace Prisma {
   export type OrdenCompraDetalleCountOrderByAggregateInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type OrdenCompraDetalleAvgOrderByAggregateInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type OrdenCompraDetalleMaxOrderByAggregateInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type OrdenCompraDetalleMinOrderByAggregateInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type OrdenCompraDetalleSumOrderByAggregateInput = {
     ordenCompraId?: SortOrder
     detalleId?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type UsuarioDireccionCreateNestedManyWithoutUsuarioInput = {
@@ -21550,11 +21584,13 @@ export namespace Prisma {
   }
 
   export type OrdenCompraDetalleCreateWithoutDetalleInput = {
+    cantidad?: number
     ordenCompra: OrdenCompraCreateNestedOneWithoutDetallesInput
   }
 
   export type OrdenCompraDetalleUncheckedCreateWithoutDetalleInput = {
     ordenCompraId: number
+    cantidad?: number
   }
 
   export type OrdenCompraDetalleCreateOrConnectWithoutDetalleInput = {
@@ -21684,6 +21720,7 @@ export namespace Prisma {
     NOT?: OrdenCompraDetalleScalarWhereInput | OrdenCompraDetalleScalarWhereInput[]
     ordenCompraId?: IntFilter<"OrdenCompraDetalle"> | number
     detalleId?: IntFilter<"OrdenCompraDetalle"> | number
+    cantidad?: IntFilter<"OrdenCompraDetalle"> | number
   }
 
   export type DetalleCreateWithoutTalleInput = {
@@ -22092,11 +22129,13 @@ export namespace Prisma {
   }
 
   export type OrdenCompraDetalleCreateWithoutOrdenCompraInput = {
+    cantidad?: number
     detalle: DetalleCreateNestedOneWithoutOrdenesItemsInput
   }
 
   export type OrdenCompraDetalleUncheckedCreateWithoutOrdenCompraInput = {
     detalleId: number
+    cantidad?: number
   }
 
   export type OrdenCompraDetalleCreateOrConnectWithoutOrdenCompraInput = {
@@ -22397,6 +22436,7 @@ export namespace Prisma {
 
   export type OrdenCompraDetalleCreateManyDetalleInput = {
     ordenCompraId: number
+    cantidad?: number
   }
 
   export type DetalleImagenUpdateWithoutDetalleInput = {
@@ -22414,15 +22454,18 @@ export namespace Prisma {
   }
 
   export type OrdenCompraDetalleUpdateWithoutDetalleInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     ordenCompra?: OrdenCompraUpdateOneRequiredWithoutDetallesNestedInput
   }
 
   export type OrdenCompraDetalleUncheckedUpdateWithoutDetalleInput = {
     ordenCompraId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleInput = {
     ordenCompraId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type DetalleCreateManyTalleInput = {
@@ -22564,18 +22607,22 @@ export namespace Prisma {
 
   export type OrdenCompraDetalleCreateManyOrdenCompraInput = {
     detalleId: number
+    cantidad?: number
   }
 
   export type OrdenCompraDetalleUpdateWithoutOrdenCompraInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     detalle?: DetalleUpdateOneRequiredWithoutOrdenesItemsNestedInput
   }
 
   export type OrdenCompraDetalleUncheckedUpdateWithoutOrdenCompraInput = {
     detalleId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraInput = {
     detalleId?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
 

@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { createCategoria, deleteCategoria, getAllCategorias, getCategoriaById, updateCategoriaById } from "../controllers/categoria.controller";
-import { authenticateToken } from "../middlewares/auth";
+import { authenticateToken, authorizeRoles } from "../middlewares/auth";
 
 const categoriasRouter = Router();
 // Obtener todas las imágenes
-categoriasRouter.get("/", authenticateToken, getAllCategorias);
+categoriasRouter.get("/", authenticateToken, authorizeRoles('ADMIN'), getAllCategorias);
 
 // Obtener una imagen por ID
 categoriasRouter.get("/:id", authenticateToken, getCategoriaById);

@@ -7,6 +7,7 @@ const detalleProdRouter = Router();
 // Ruta base: /detalles-productos
 
 // Obtener todos los detalles de productos
+
 detalleProdRouter.get("/", authenticateToken, detalleController.getAllDetalleProductos);
 
 // Obtener un detalle de producto por ID

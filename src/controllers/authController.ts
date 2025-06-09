@@ -33,14 +33,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
                 contrasena: hash,
                 dni,
                 rol
-                //direccion?
+                
         });
-
-        //Crear direccion
-        //const nuevaDireccion = await createDireccion(direccion); //cambiar por las campos del formulario
-
-        //Relacion usuario-direccion
-        //await createUsuarioDireccion(nuevoUsuario.id, nuevaDireccion.id);
 
         //Genera un token JWT
         const token = generarToken({ id: nuevoUsuario.id.toString(), rol: nuevoUsuario.rol });

@@ -5,7 +5,7 @@ import * as categoriaService from "../services/categoria.service"
 export const getAllCategorias = async (req: Request, res: Response) => {
     try {
         const categorias = await categoriaService.getAllCategorias();
-        res.json(categorias);
+        res.status(200).json(categorias);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener las categorias" });
     }
@@ -15,6 +15,12 @@ export const getAllCategorias = async (req: Request, res: Response) => {
 export const getCategoriaById = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            res.status(400).json({ error: "ID inválido" });
+            return
+        }
+
         const categoria = await categoriaService.getCategoriaById(id);
 
         if (!categoria) {
@@ -22,7 +28,7 @@ export const getCategoriaById = async (req: Request, res: Response) => {
             return
         }
 
-        res.json(categoria);
+        res.status(200).json(categoria);
     } catch (error) {
         res.status(500).json({ error: "Error al obtener la categoria" });
     }
@@ -33,7 +39,7 @@ export const createCategoria = async (req: Request, res: Response) => {
     try {
         const { nombre } = req.body;
 
-        if (!nombre) {
+        if (!nombre || typeof nombre !== "string") {
             res.status(400).json({ error: "El campo 'nombre' es requerido" });
             return
         }
@@ -48,8 +54,19 @@ export const createCategoria = async (req: Request, res: Response) => {
 export const updateCategoriaById = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
-        const categoriaActualizada = await categoriaService.updateCategoria(id, req.body);
-        res.json(categoriaActualizada);
+
+        if (isNaN(id)) {
+            res.status(400).json({ error: "ID inválido" });
+        }
+
+        const { nombre } = req.body;
+
+        if (!nombre || typeof nombre !== "string") {
+            res.status(400).json({ error: "El campo 'nombre' es requerido y debe ser un string" });
+        }
+
+        const updated = await categoriaService.updateCategoria(id, { nombre });
+        res.status(200).json(updated);
     } catch (error) {
         res.status(400).json({ error: "Error al actualizar la categoria" });
     }
@@ -59,9 +76,12 @@ export const updateCategoriaById = async (req: Request, res: Response) => {
 export const deleteCategoria = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
+        if (isNaN(id)) {
+            res.status(400).json({ error: "ID inválido" });
+        }
         await categoriaService.deleteCategoria(id);
-        res.status(204).json({ message: "Imagen eliminada correctamente" });
+        res.status(204).json({ message: "Categoria eliminada correctamente" });
     } catch (error) {
-        res.status(400).json({ error: "Error al eliminar la categoria" });
+        res.status(500).json({ error: "Error al eliminar la categoria" });
     }
 };

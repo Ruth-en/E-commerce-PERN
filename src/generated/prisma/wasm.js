@@ -210,7 +210,8 @@ exports.Prisma.OrdenCompraScalarFieldEnum = {
 
 exports.Prisma.OrdenCompraDetalleScalarFieldEnum = {
   ordenCompraId: 'ordenCompraId',
-  detalleId: 'detalleId'
+  detalleId: 'detalleId',
+  cantidad: 'cantidad'
 };
 
 exports.Prisma.SortOrder = {

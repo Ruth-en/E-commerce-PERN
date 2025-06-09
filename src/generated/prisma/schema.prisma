@@ -191,6 +191,7 @@ model OrdenCompra {
 model OrdenCompraDetalle {
   ordenCompraId Int @map("orden_compra_id")
   detalleId     Int
+  cantidad      Int @default(1)
 
   ordenCompra OrdenCompra @relation(fields: [ordenCompraId], references: [id])
   detalle     Detalle     @relation(fields: [detalleId], references: [id])

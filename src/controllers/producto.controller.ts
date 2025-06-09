@@ -5,7 +5,7 @@ import * as productoService from "../services/producto.service";
 export const getAllProductos = async (_req: Request, res: Response) => {
     try {
         const productos = await productoService.getAllProductos();
-        res.json(productos);
+        res.status(200).json(productos);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener productos" });
     }
@@ -20,7 +20,7 @@ export const getProductoById = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Producto no encontrado" });
             return 
         }
-        res.json(producto);
+        res.status(200).json(producto);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al obtener producto" });
     }
@@ -75,7 +75,7 @@ export const updateProductoById = async (req: Request, res: Response) => {
             tipoProducto,
             categoriaId: Number(categoriaId),
         });
-        res.json(productoActualizado);
+        res.status(201).json(productoActualizado);
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al actualizar producto" });
     }
@@ -86,7 +86,7 @@ export const deleteProductoById = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         await productoService.deleteProductoById(id);
-        res.json({ mensaje: "Producto eliminado correctamente" });
+        res.status(200).json({ mensaje: "Producto eliminado correctamente" });
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al eliminar producto" });
     }
