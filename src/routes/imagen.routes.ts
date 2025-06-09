@@ -11,10 +11,10 @@ import { authenticateToken } from "../middlewares/auth";
 const imagenRouter = Router();
 
 // Obtener todas las imágenes
-imagenRouter.get("/", authenticateToken, getAllImagenes);
+imagenRouter.get("/", getAllImagenes);
 
 // Obtener una imagen por ID
-imagenRouter.get("/:id", authenticateToken, getImagenById);
+imagenRouter.get("/:id", getImagenById);
 
 // Crear una nueva imagen
 imagenRouter.post("/", authenticateToken, createImagen);

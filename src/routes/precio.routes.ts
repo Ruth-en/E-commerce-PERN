@@ -4,8 +4,8 @@ import { authenticateToken } from "../middlewares/auth";
 
 const precioRouter = Router();
 
-precioRouter.get("/", authenticateToken, precioController.getPrecios);
-precioRouter.get("/:id", authenticateToken, precioController.getPrecio);
+precioRouter.get("/", precioController.getPrecios);
+precioRouter.get("/:id", precioController.getPrecio);
 precioRouter.post("/", authenticateToken, precioController.createPrecio);
 precioRouter.delete("/:id", authenticateToken, precioController.deletePrecio);
 

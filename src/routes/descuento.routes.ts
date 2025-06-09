@@ -4,7 +4,7 @@ import { authenticateToken } from "../middlewares/auth";
 
 const descuentoRouter = Router();
 
-descuentoRouter.get("/", authenticateToken, getAllDescuentos);
+descuentoRouter.get("/", getAllDescuentos);
 descuentoRouter.post("/", authenticateToken, createDescuento);
 descuentoRouter.delete("/:id", authenticateToken, deleteDescuento);
 

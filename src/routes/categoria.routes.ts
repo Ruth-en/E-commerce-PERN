@@ -4,10 +4,10 @@ import { authenticateToken, authorizeRoles } from "../middlewares/auth";
 
 const categoriasRouter = Router();
 // Obtener todas las imágenes
-categoriasRouter.get("/", authenticateToken, authorizeRoles('ADMIN'), getAllCategorias);
+categoriasRouter.get("/", getAllCategorias);
 
 // Obtener una imagen por ID
-categoriasRouter.get("/:id", authenticateToken, getCategoriaById);
+categoriasRouter.get("/:id", getCategoriaById);
 
 // Crear una nueva imagen
 categoriasRouter.post("/", authenticateToken, createCategoria);

@@ -8,10 +8,10 @@ const detalleProdRouter = Router();
 
 // Obtener todos los detalles de productos
 
-detalleProdRouter.get("/", authenticateToken, detalleController.getAllDetalleProductos);
+detalleProdRouter.get("/", detalleController.getAllDetalleProductos);
 
 // Obtener un detalle de producto por ID
-detalleProdRouter.get("/:id", authenticateToken, detalleController.getDetallesProductoById);
+detalleProdRouter.get("/:id", detalleController.getDetallesProductoById);
 
 // Crear un nuevo detalle de producto
 detalleProdRouter.post("/", authenticateToken, detalleController.createDetallesProducto);

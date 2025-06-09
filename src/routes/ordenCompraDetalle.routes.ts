@@ -5,7 +5,7 @@ import { authenticateToken, authorizeRoles } from "../middlewares/auth";
 const ordenDetalleRouter = Router();
 
 ordenDetalleRouter.post("/", authenticateToken, ordenDetalleController.addDetalleToOrden);
-ordenDetalleRouter.get("/", authenticateToken,  authorizeRoles('ADMIN'), ordenDetalleController.getAllDetallesOrden);
+ordenDetalleRouter.get("/", authenticateToken, ordenDetalleController.getAllDetallesOrden);
 ordenDetalleRouter.get("/:ordenCompraId", authenticateToken, ordenDetalleController.getDetallesByOrden);
 ordenDetalleRouter.delete("/:ordenCompraId/:detalleId", authenticateToken, ordenDetalleController.removeDetalleFromOrden);
 

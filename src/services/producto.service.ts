@@ -22,10 +22,10 @@ export const createProducto = async (data: {
 
 // Editar un Producto por ID
 export const updateProductoById = async (id: number, data: {
-    nombre: string;
-    sexo: string;
-    tipoProducto: number;
-    categoriaId: number;
+    nombre?: string;
+    sexo?: string;
+    tipoProducto?: number;
+    categoriaId?: number;
 }) => {
     return prisma.producto.update({ where: { id }, data });
 }

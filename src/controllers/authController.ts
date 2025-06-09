@@ -8,10 +8,10 @@ import { createUsuario } from '../services/usuarios.service';
 
 //Registo del usuario
 export const register = async (req: Request, res: Response): Promise<void> => {
-    const { nombre, email, contrasena, dni, rol } = req.body;
+    const { nombre, email, contrasena, dni } = req.body;
     console.log('Request body:', req.body);
     try {
-        if (!nombre || !email || !contrasena || !dni || !rol) {
+        if (!nombre || !email || !contrasena || !dni ) {
             res.status(400).json({ message: 'Faltan datos obligatorios' });
             return
         }
@@ -32,8 +32,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
                 email,
                 contrasena: hash,
                 dni,
-                rol
-                
+                rol: "CLIENTE"
         });
 
         //Genera un token JWT
