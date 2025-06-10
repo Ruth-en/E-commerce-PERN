@@ -2,13 +2,20 @@ import { prisma } from "../models"
 
 // Obtener todas las direcciones
 export const getAllDirecciones = async () => {
-    return prisma.direccion.findMany()
+    return prisma.direccion.findMany({
+        include:{
+            usuarioDireccion: true
+        }
+    })
 }
 
 // Obtener una dirección por ID
 export const getAllDireccionesById = async (id: number) => {
     return prisma.direccion.findUnique({
         where: { id },
+        include:{
+            usuarioDireccion: true
+        }
     })
 }
 

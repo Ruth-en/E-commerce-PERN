@@ -2,12 +2,21 @@ import { prisma } from "../models"
 
 //Obtener todos las Imagen
 export const getAllImagen = async () => {
-    return prisma.imagen.findMany()
+    return prisma.imagen.findMany({
+        include: {
+            detalleImagenes: true
+        }
+    })
 }
 
 //Obtener un Imagen por ID
 export const getImagenById = async (id: number) => {
-    return prisma.imagen.findUnique({ where: { id } })
+    return prisma.imagen.findUnique({
+        where: { id },
+        include: {
+            detalleImagenes: true
+        }
+    })
 }
 
 // Crear Imagen

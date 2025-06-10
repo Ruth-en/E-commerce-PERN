@@ -2,7 +2,11 @@ import { prisma } from "../models";
 
 // Obtener todos los descuentos
 export const getAllDescuentos = async () => {
-    return prisma.descuento.findMany();
+    return prisma.descuento.findMany({
+        include:{
+            precios:true
+        }
+    });
 };
 
 // crear un descuento

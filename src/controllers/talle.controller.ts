@@ -61,8 +61,8 @@ export const deleteTalle = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);
         await talleService.deleteTalleById(id);
-        res.status(204).send();
-    } catch (error) {
-        res.status(400).json({ error: "Error al eliminar talle" });
+        res.status(204).send(); // No Content
+    } catch (error: any) {
+        res.status(400).json({ error: error.message || "Error al eliminar talle" });
     }
 };

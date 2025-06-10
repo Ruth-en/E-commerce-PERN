@@ -2,12 +2,25 @@ import { prisma } from "../models"
 
 //Obtener todos los DetallesProductos
 export const getAllDetalleProductos = async () => {
-    return prisma.detalle.findMany();
+    return prisma.detalle.findMany({
+        include: {
+            producto: true,
+            talle: true,
+            precio: true
+        }
+    });
 }
 
 //Obtener un DetallesProducto por ID
 export const getDetallesProductoById = async (id: number) => {
-    return prisma.detalle.findUnique({ where: { id } });
+    return prisma.detalle.findUnique({
+        where: { id },
+        include: {
+            producto: true,
+            talle: true,
+            precio: true
+        }
+    });
 }
 
 // Crear DetallesProducto

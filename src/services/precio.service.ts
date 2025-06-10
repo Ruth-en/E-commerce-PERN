@@ -2,12 +2,21 @@ import { prisma } from "../models";
 
 // Obtener todos los precios 
 export const getAllPrecios = async () => {
-    return prisma.precio.findMany();
+    return prisma.precio.findMany({
+        include: {
+            detalles: true,
+        }
+    });
 };
 
 // Obtener un precio por ID
 export const getAllPrecioById = async (id: number) => {
-    return prisma.precio.findUnique({ where: { id } });
+    return prisma.precio.findUnique({
+        where: { id },
+        include: {
+            detalles: true,
+        }
+    });
 };
 
 // Crear un Precio

@@ -1,31 +1,59 @@
-import { prisma } from "../models"
+import { prisma } from "../models";
 
-
-// Obtener todas las categorias
+// Obtener todas las categorías
 export const getAllCategorias = async () => {
-    return prisma.categoria.findMany();
-}
+    try {
+        return await prisma.categoria.findMany({
+            include: {
+                productos: true
+            }
+        });
+    } catch (error: any) {
+        throw new Error("Error al obtener las categorías");
+    }
+};
 
-// Obtener categoria por ID
+// Obtener categoría por ID
 export const getCategoriaById = async (id: number) => {
-    return prisma.categoria.findUnique({ where: { id } })
-}
+    try {
+        return await prisma.categoria.findUnique({
+            where: { id },
+            include: { productos: true }
+        });
+    } catch (error: any) {
+        throw new Error(`Error al obtener la categoría con ID ${id}`);
+    }
+};
 
-// Crear una nueva categoria
-export const createCategoria = async (data: {
-    nombre: string;
-}) => {
-    return prisma.categoria.create({ data });
-}
+// Crear una nueva categoría
+export const createCategoria = async (data: { nombre: string }) => {
+    try {
+        return await prisma.categoria.create({ data });
+    } catch (error: any) {
+        throw new Error("Error al crear la categoría");
+    }
+};
 
-// Actualizamos una categoria por ID
-export const updateCategoria = async (id: number, data: {
-    nombre: string;
-}) => {
-    return prisma.categoria.update({ where: { id }, data });
-}
+// Actualizar una categoría por ID
+export const updateCategoria = async (id: number, data: { nombre: string }) => {
+    try {
+        return await prisma.categoria.update({ where: { id }, data });
+    } catch (error: any) {
+        if (error.code === "P2025") {
+            throw new Error(`No se encontró la categoría con ID ${id} para actualizar`);
+        }
+        throw new Error(`Error al actualizar la categoría: ${error.message}`);
+    }
+};
 
-// Eliminar categoria por ID
+// Eliminar una categoría por ID
 export const deleteCategoria = async (id: number) => {
-    return prisma.categoria.delete({ where: { id } })
-}
+    try {
+        return await prisma.categoria.delete({ where: { id } });
+    } catch (error: any) {
+        if (error.code === "P2025") {
+            throw new Error(`No se encontró la categoría con ID ${id} para eliminar`);
+        }
+        throw new Error(`Error al eliminar la categoría: ${error.message}`);
+    }
+};

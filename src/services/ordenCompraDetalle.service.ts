@@ -11,7 +11,12 @@ export const addDetalleToOrden = async (data: {
 
 // obtener todos los detalles de orden
 export const getAllDetalles = async () => {
-    return prisma.ordenCompraDetalle.findMany();
+    return prisma.ordenCompraDetalle.findMany({
+        include: {
+            ordenCompra: true,
+            detalle: true,
+        }
+    });
 };
 
 // Obtener detalles de una orden
@@ -19,8 +24,9 @@ export const getDetallesByOrden = async (ordenCompraId: number) => {
     return prisma.ordenCompraDetalle.findMany({
         where: { ordenCompraId },
         include: {
+            ordenCompra: true,
             detalle: true,
-        },
+        }
     });
 };
 

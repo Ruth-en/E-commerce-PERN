@@ -2,12 +2,25 @@ import { prisma } from "../models"
 import bcrypt from 'bcrypt';
 // Obtenemos todos los usuarios
 export const getAllUsuarios = async () => {
-    return prisma.usuario.findMany();
+    return prisma.usuario.findMany({
+        include:{
+            usuarioDireccion: {
+                include:{
+                    direccion:true
+                }
+            }
+        } 
+    });
 }
 
 // Obtenemos un Usuario por ID
 export const getUsuarioById = async (id: number) => {
-    return prisma.usuario.findUnique({ where: { id } });
+    return prisma.usuario.findUnique({ 
+        where: { id },
+        include:{
+            usuarioDireccion: true
+        }
+    });
 }
 
 // Crear un Usuario
@@ -16,7 +29,7 @@ export const createUsuario = async (data: {
     email: string;
     contrasena: string;
     dni: string;
-    rol: "ADMIN" | "CLIENTE";
+    rol: "CLIENTE";
 }) => {
     
     return prisma.usuario.create({ data })
@@ -29,7 +42,6 @@ export const updateUsuario = async (id: number, data: {
         email: string;
         contrasena: string;
         dni: string;
-        rol: "ADMIN" | "CLIENTE";
     }
 }) => {
     return prisma.usuario.update({ where: { id }, data })

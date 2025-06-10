@@ -2,12 +2,23 @@ import { prisma } from "../models"
 
 //Obtener todos los Productos
 export const getAllProductos = async () => {
-    return prisma.producto.findMany();
+    return prisma.producto.findMany({
+        include: {
+            categoria: true,
+            detalles: true
+        }
+    });
 };
 
 //Obtener un Producto por ID
 export const getProductoById = async (id: number) => {
-    return prisma.producto.findUnique({ where: { id } })
+    return prisma.producto.findUnique({
+        where: { id },
+        include: {
+            categoria: true,
+            detalles: true
+        }
+    })
 }
 
 // Crear Producto
