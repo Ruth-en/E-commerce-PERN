@@ -20,11 +20,12 @@ enum Rol {
 }
 
 model Usuario {
-  id         Int    @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   nombre     String
-  email      String @unique
+  email      String  @unique
   contrasena String
   dni        String
+  activo     Boolean @default(true)
 
   //relaciones
   rol              Rol
@@ -70,15 +71,15 @@ model Producto {
   nombre       String
   sexo         String
   tipoProducto Int
-  categoriaId  Int
+  categoriaId  Int?
 
   //Relacion getionada por Producto
-  categoria Categoria @relation(fields: [categoriaId], references: [id]) //claves foráneas con fields y references
+  categoria Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull) // <--- SetNull y nullable
 
   //relaciones
   detalles Detalle[] // Relación 1:N con Detalle
 
-  @@index([categoriaId]) //rea un índice en la base de datos sobre la columna categoriaId de la tabla Producto.
+  //@@unique([categoriaId])  //rea un índice en la base de datos sobre la columna categoriaId de la tabla Producto.
 }
 
 model Detalle {
@@ -88,13 +89,13 @@ model Detalle {
   stock      Int
   estado     Boolean
   productoId Int
-  talleId    Int
-  precioId   Int
+  talleId    Int?
+  precioId   Int?
 
   //Relacion getionada por Detalle
-  producto Producto @relation(fields: [productoId], references: [id])
-  talle    Talle    @relation(fields: [talleId], references: [id])
-  precio   Precio   @relation(fields: [precioId], references: [id])
+  producto Producto @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  talle    Talle?   @relation(fields: [talleId], references: [id], onDelete: SetNull)
+  precio   Precio?  @relation(fields: [precioId], references: [id], onDelete: SetNull)
 
   //relaciones
   imagenes     DetalleImagen[]
@@ -126,16 +127,14 @@ model Imagen {
 }
 
 model DetalleImagen {
-  id Int @id @default(autoincrement())
-
-  // Relaciones
   detalleId Int
   imagenId  Int
 
   //Relacion getionada por DetalleImagen
-  detalle Detalle @relation(fields: [detalleId], references: [id])
-  imagen  Imagen  @relation(fields: [imagenId], references: [id])
+  detalle Detalle @relation(fields: [detalleId], references: [id], onDelete: Cascade)
+  imagen  Imagen  @relation(fields: [imagenId], references: [id], onDelete: Cascade)
 
+  @@id([detalleId, imagenId])
   @@map("detalle_imagen")
 }
 
@@ -166,8 +165,8 @@ model PrecioDescuento {
   descuentoId Int
 
   //Relacion getionada por PrecioDescuento
-  precio    Precio    @relation(fields: [precioId], references: [id])
-  descuento Descuento @relation(fields: [descuentoId], references: [id])
+  precio    Precio    @relation(fields: [precioId], references: [id], onDelete: Cascade)
+  descuento Descuento @relation(fields: [descuentoId], references: [id], onDelete: Cascade)
 
   @@id([precioId, descuentoId])
   @@map("precio_descuento")
@@ -183,7 +182,7 @@ model OrdenCompra {
   usuarioDireccion UsuarioDireccion @relation(fields: [usuarioDireccionId], references: [id])
 
   //Relacion
-  detalles OrdenCompraDetalle[] // Relación 1:N con OrdenCompraDetalle
+  ordenCompraDetalles OrdenCompraDetalle[] // Relación 1:N con OrdenCompraDetalle
 
   @@map("orden_compra")
 }
@@ -193,8 +192,8 @@ model OrdenCompraDetalle {
   detalleId     Int
   cantidad      Int @default(1)
 
-  ordenCompra OrdenCompra @relation(fields: [ordenCompraId], references: [id])
-  detalle     Detalle     @relation(fields: [detalleId], references: [id])
+  ordenCompra OrdenCompra @relation(fields: [ordenCompraId], references: [id], onDelete: Cascade)
+  detalle     Detalle     @relation(fields: [detalleId], references: [id], onDelete: Cascade)
 
   @@id([ordenCompraId, detalleId])
   @@map("orden_compra_detalle")

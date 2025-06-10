@@ -8,6 +8,6 @@ const detalleImagenRouter = Router();
 detalleImagenRouter.post("/", authenticateToken, detalleImagenController.addImagenToDetalleProducto);
 detalleImagenRouter.get("/", detalleImagenController.getAllDetalleImagenes);
 detalleImagenRouter.get("/:detalleId", detalleImagenController.getDetalleImagenById);
-detalleImagenRouter.delete("/:id", authenticateToken, detalleImagenController.deleteDetalleImagenById);
+detalleImagenRouter.delete("/:detalleId/:imagenId", authenticateToken, detalleImagenController.deleteDetalleImagenById);
 
 export default detalleImagenRouter;

@@ -20,8 +20,9 @@ export const getDetalleImagenById = async (req: Request, res: Response) => {
     }
 
     try {
-        const relacion = await detalleImagenService.getDetalleImagenById(detalleId);
-        if (!relacion) {
+        const relacion = await detalleImagenService.getDetalleImagenByDetalleId(detalleId);
+        // El servicio lanza error si no encuentra, pero chequeamos por seguridad
+        if (!relacion || relacion.length === 0) {
             res.status(404).json({ error: "Relación no encontrada" });
             return
         }
@@ -35,7 +36,7 @@ export const getDetalleImagenById = async (req: Request, res: Response) => {
 export const addImagenToDetalleProducto = async (req: Request, res: Response) => {
     const { detalleId, imagenId } = req.body;
 
-    if (!detalleId || !imagenId) {
+    if (detalleId === undefined || imagenId === undefined) {
         res.status(400).json({ error: "detalleId e imagenId son requeridos" });
         return
     }
@@ -56,15 +57,20 @@ export const addImagenToDetalleProducto = async (req: Request, res: Response) =>
     }
 };
 
-// DELETE /detalle-imagen/:id
+// DELETE /detalle-imagen/:detalleId/:imagenId
 export const deleteDetalleImagenById = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    if (isNaN(id)) {
-        res.status(400).json({ error: "ID inválido" });
+    const detalleId = Number(req.params.detalleId);
+    const imagenId = Number(req.params.imagenId);
+
+    if (isNaN(detalleId) || isNaN(imagenId)) {
+        res.status(400).json({ error: "IDs inválidos" });
+        return
     }
 
     try {
-        await detalleImagenService.deleteDetalleImagenById(id);
+        await detalleImagenService.deleteDetalleImagenById(detalleId, imagenId);
+        // 204 No Content no debe tener body
+
         res.status(204).json({ message: "Relación detalle-imagen eliminada correctamente" });
     } catch (error: any) {
         res.status(500).json({ error: error.message || "Error al eliminar la relación detalle-imagen" });

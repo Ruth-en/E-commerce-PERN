@@ -1,4 +1,5 @@
 import { PrismaClient } from '../src/generated/prisma';
+import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 async function main() {
@@ -21,13 +22,21 @@ async function main() {
     // ────────────────────────────────────────────
     // Insertar Usuarios
     // ────────────────────────────────────────────
+
+
+    const hashed123 = await bcrypt.hash('123', 10);
+    const hashedAdmin = await bcrypt.hash('admin', 10);
+    const hashedAbc = await bcrypt.hash('abc', 10);
+    const hashedXyz = await bcrypt.hash('xyz', 10);
+
     const usuarios = await Promise.all([
-        prisma.usuario.create({ data: { id: 1, nombre: 'Ana', email: 'ana@mail.com', contrasena: '123', dni: '12345678', rol: 'CLIENTE' } }),
-        prisma.usuario.create({ data: { id: 2, nombre: 'Luis', email: 'luis@mail.com', contrasena: '123', dni: '23456789', rol: 'CLIENTE' } }),
-        prisma.usuario.create({ data: { id: 3, nombre: 'Admin', email: 'admin@mail.com', contrasena: 'admin', dni: '00000000', rol: 'ADMIN' } }),
-        prisma.usuario.create({ data: { id: 4, nombre: 'Marta', email: 'marta@mail.com', contrasena: 'abc', dni: '34567890', rol: 'CLIENTE' } }),
-        prisma.usuario.create({ data: { id: 5, nombre: 'Pedro', email: 'pedro@mail.com', contrasena: 'xyz', dni: '45678901', rol: 'CLIENTE' } }),
+        prisma.usuario.create({ data: { id: 1, nombre: 'Ana', email: 'ana@mail.com', contrasena: hashed123, dni: '12345678', rol: 'CLIENTE' } }),
+        prisma.usuario.create({ data: { id: 2, nombre: 'Luis', email: 'luis@mail.com', contrasena: hashed123, dni: '23456789', rol: 'CLIENTE' } }),
+        prisma.usuario.create({ data: { id: 3, nombre: 'Admin', email: 'admin@mail.com', contrasena: hashedAdmin, dni: '00000000', rol: 'ADMIN' } }),
+        prisma.usuario.create({ data: { id: 4, nombre: 'Marta', email: 'marta@mail.com', contrasena: hashedAbc, dni: '34567890', rol: 'CLIENTE' } }),
+        prisma.usuario.create({ data: { id: 5, nombre: 'Pedro', email: 'pedro@mail.com', contrasena: hashedXyz, dni: '45678901', rol: 'CLIENTE' } }),
     ]);
+
 
     // ────────────────────────────────────────────
     // Insertar Direcciones

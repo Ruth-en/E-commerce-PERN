@@ -126,6 +126,7 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   email: 'email',
   contrasena: 'contrasena',
   dni: 'dni',
+  activo: 'activo',
   rol: 'rol'
 };
 
@@ -178,7 +179,6 @@ exports.Prisma.ImagenScalarFieldEnum = {
 };
 
 exports.Prisma.DetalleImagenScalarFieldEnum = {
-  id: 'id',
   detalleId: 'detalleId',
   imagenId: 'imagenId'
 };
@@ -222,6 +222,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.Rol = exports.$Enums.Rol = {
   ADMIN: 'ADMIN',

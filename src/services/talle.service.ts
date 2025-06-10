@@ -20,7 +20,7 @@ export const getTalleById = async (id: number) => {
                 detalles: true
             }
         });
-        
+
         if (!talle) throw new Error(`Talle con ID ${id} no encontrado`);
         return talle;
     } catch (error: any) {
@@ -49,7 +49,16 @@ export const updateTalleById = async (id: number, data: { numero: string }) => {
 
 export const deleteTalleById = async (id: number) => {
     try {
-        return await prisma.talle.delete({ where: { id } });
+        await prisma.talle.delete({ where: { id } });
+        await prisma.ordenCompraDetalle.deleteMany({
+            where: {
+                detalle: {
+                    talleId: {
+                        equals: null,
+                    },
+                },
+            },
+        });
     } catch (error: any) {
         if (error.code === "P2025") {
             throw new Error(`No se encontró el talle con ID ${id} para eliminar`);

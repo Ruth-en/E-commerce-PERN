@@ -5,7 +5,7 @@ import {
   getUsuarioById,
   createUsuario,
   updateUsuario,
-  deleteUsuario
+  desactivarUsuario
 } from "../controllers/usuario.controller";
 import { authenticateToken } from "../middlewares/auth";
 
@@ -15,6 +15,6 @@ usuarioRouter.get("/", authenticateToken, getUsuarios);
 usuarioRouter.get("/:id", authenticateToken, getUsuarioById);
 usuarioRouter.post("/", authenticateToken, createUsuario);
 usuarioRouter.put("/:id", authenticateToken, updateUsuario);
-usuarioRouter.delete("/:id", authenticateToken, deleteUsuario);
+usuarioRouter.put("/:id/desactivar", authenticateToken, desactivarUsuario);
 
 export default usuarioRouter;

@@ -33,5 +33,21 @@ export const createPrecio = async (data: {
 
 // Eliminar un Precio por ID
 export const deletePrecioById = async (id: number) => {
-    return prisma.precio.delete({ where: { id } });
+    try {
+        await prisma.precio.delete({ where: { id } });
+        await prisma.ordenCompraDetalle.deleteMany({
+            where: {
+                detalle: {
+                    precioId: {
+                        equals: null,
+                    },
+                },
+            },
+        });
+    } catch (error: any) {
+        if (error.code === "P2025") {
+            throw new Error(`No se encontró el precio con ID ${id} para eliminar`);
+        }
+        throw new Error(`Error al eliminar el precio: ${error.message}`);
+    }
 };

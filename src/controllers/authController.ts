@@ -8,14 +8,17 @@ import { createUsuario } from '../services/usuarios.service';
 
 //Registo del usuario
 export const register = async (req: Request, res: Response): Promise<void> => {
-    const { nombre, email, contrasena, dni } = req.body;
+    const { nombre, email, contrasena, dni, pais, provincia, departamento, localidad } = req.body;
     console.log('Request body:', req.body);
     try {
-        if (!nombre || !email || !contrasena || !dni ) {
+        if (!nombre || !email || !contrasena || !dni) {
             res.status(400).json({ message: 'Faltan datos obligatorios' });
             return
         }
-
+        if (!pais || !provincia || !departamento || !localidad) {
+            res.status(400).json({ message: 'Faltan datos de direccion' });
+            return
+        }
         //Validar que el email no exista
         const usuarioExistente = await prisma.usuario.findUnique({ where: { email } });
         if (usuarioExistente) {
@@ -26,15 +29,34 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         //Hashear la contraseña.
         const hash = await bcrypt.hash(contrasena, 10);
 
-        //Crear el usuario.
-        const nuevoUsuario = await createUsuario({
-                nombre,
-                email,
-                contrasena: hash,
-                dni,
-                rol: "CLIENTE"
-        });
+        // Ejecutar todo en una transacción
+        const [nuevoUsuario, direccion] = await prisma.$transaction([
+            prisma.usuario.create({
+                data: {
+                    nombre,
+                    email,
+                    contrasena: hash,
+                    dni,
+                    rol: 'CLIENTE',
+                },
+            }),
+            prisma.direccion.create({
+                data: {
+                    pais,
+                    provincia,
+                    departamento,
+                    localidad,
+                },
+            }),
+        ]);
 
+        // Relación usuario-dirección (fuera del array porque depende de los resultados)
+        await prisma.usuarioDireccion.create({
+            data: {
+                usuarioId: nuevoUsuario.id,
+                direccionId: direccion.id,
+            },
+        });
         //Genera un token JWT
         const token = generarToken({ id: nuevoUsuario.id.toString(), rol: nuevoUsuario.rol });
 

@@ -2397,11 +2397,11 @@ export namespace Prisma {
    */
 
   export type OrdenCompraCountOutputType = {
-    detalles: number
+    ordenCompraDetalles: number
   }
 
   export type OrdenCompraCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    detalles?: boolean | OrdenCompraCountOutputTypeCountDetallesArgs
+    ordenCompraDetalles?: boolean | OrdenCompraCountOutputTypeCountOrdenCompraDetallesArgs
   }
 
   // Custom InputTypes
@@ -2418,7 +2418,7 @@ export namespace Prisma {
   /**
    * OrdenCompraCountOutputType without action
    */
-  export type OrdenCompraCountOutputTypeCountDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type OrdenCompraCountOutputTypeCountOrdenCompraDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrdenCompraDetalleWhereInput
   }
 
@@ -2453,6 +2453,7 @@ export namespace Prisma {
     email: string | null
     contrasena: string | null
     dni: string | null
+    activo: boolean | null
     rol: $Enums.Rol | null
   }
 
@@ -2462,6 +2463,7 @@ export namespace Prisma {
     email: string | null
     contrasena: string | null
     dni: string | null
+    activo: boolean | null
     rol: $Enums.Rol | null
   }
 
@@ -2471,6 +2473,7 @@ export namespace Prisma {
     email: number
     contrasena: number
     dni: number
+    activo: number
     rol: number
     _all: number
   }
@@ -2490,6 +2493,7 @@ export namespace Prisma {
     email?: true
     contrasena?: true
     dni?: true
+    activo?: true
     rol?: true
   }
 
@@ -2499,6 +2503,7 @@ export namespace Prisma {
     email?: true
     contrasena?: true
     dni?: true
+    activo?: true
     rol?: true
   }
 
@@ -2508,6 +2513,7 @@ export namespace Prisma {
     email?: true
     contrasena?: true
     dni?: true
+    activo?: true
     rol?: true
     _all?: true
   }
@@ -2604,6 +2610,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo: boolean
     rol: $Enums.Rol
     _count: UsuarioCountAggregateOutputType | null
     _avg: UsuarioAvgAggregateOutputType | null
@@ -2632,6 +2639,7 @@ export namespace Prisma {
     email?: boolean
     contrasena?: boolean
     dni?: boolean
+    activo?: boolean
     rol?: boolean
     usuarioDireccion?: boolean | Usuario$usuarioDireccionArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
@@ -2643,6 +2651,7 @@ export namespace Prisma {
     email?: boolean
     contrasena?: boolean
     dni?: boolean
+    activo?: boolean
     rol?: boolean
   }, ExtArgs["result"]["usuario"]>
 
@@ -2652,6 +2661,7 @@ export namespace Prisma {
     email?: boolean
     contrasena?: boolean
     dni?: boolean
+    activo?: boolean
     rol?: boolean
   }, ExtArgs["result"]["usuario"]>
 
@@ -2661,10 +2671,11 @@ export namespace Prisma {
     email?: boolean
     contrasena?: boolean
     dni?: boolean
+    activo?: boolean
     rol?: boolean
   }
 
-  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "email" | "contrasena" | "dni" | "rol", ExtArgs["result"]["usuario"]>
+  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "email" | "contrasena" | "dni" | "activo" | "rol", ExtArgs["result"]["usuario"]>
   export type UsuarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuarioDireccion?: boolean | Usuario$usuarioDireccionArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
@@ -2683,6 +2694,7 @@ export namespace Prisma {
       email: string
       contrasena: string
       dni: string
+      activo: boolean
       rol: $Enums.Rol
     }, ExtArgs["result"]["usuario"]>
     composites: {}
@@ -3113,6 +3125,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Usuario", 'String'>
     readonly contrasena: FieldRef<"Usuario", 'String'>
     readonly dni: FieldRef<"Usuario", 'String'>
+    readonly activo: FieldRef<"Usuario", 'Boolean'>
     readonly rol: FieldRef<"Usuario", 'Rol'>
   }
     
@@ -7003,7 +7016,7 @@ export namespace Prisma {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoriaId: number
+    categoriaId: number | null
     _count: ProductoCountAggregateOutputType | null
     _avg: ProductoAvgAggregateOutputType | null
     _sum: ProductoSumAggregateOutputType | null
@@ -7031,7 +7044,7 @@ export namespace Prisma {
     sexo?: boolean
     tipoProducto?: boolean
     categoriaId?: boolean
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
     detalles?: boolean | Producto$detallesArgs<ExtArgs>
     _count?: boolean | ProductoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["producto"]>
@@ -7042,7 +7055,7 @@ export namespace Prisma {
     sexo?: boolean
     tipoProducto?: boolean
     categoriaId?: boolean
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
   }, ExtArgs["result"]["producto"]>
 
   export type ProductoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7051,7 +7064,7 @@ export namespace Prisma {
     sexo?: boolean
     tipoProducto?: boolean
     categoriaId?: boolean
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
   }, ExtArgs["result"]["producto"]>
 
   export type ProductoSelectScalar = {
@@ -7064,21 +7077,21 @@ export namespace Prisma {
 
   export type ProductoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "sexo" | "tipoProducto" | "categoriaId", ExtArgs["result"]["producto"]>
   export type ProductoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
     detalles?: boolean | Producto$detallesArgs<ExtArgs>
     _count?: boolean | ProductoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
   }
   export type ProductoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
+    categoria?: boolean | Producto$categoriaArgs<ExtArgs>
   }
 
   export type $ProductoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Producto"
     objects: {
-      categoria: Prisma.$CategoriaPayload<ExtArgs>
+      categoria: Prisma.$CategoriaPayload<ExtArgs> | null
       detalles: Prisma.$DetallePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7086,7 +7099,7 @@ export namespace Prisma {
       nombre: string
       sexo: string
       tipoProducto: number
-      categoriaId: number
+      categoriaId: number | null
     }, ExtArgs["result"]["producto"]>
     composites: {}
   }
@@ -7481,7 +7494,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProductoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    categoria<T extends CategoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoriaDefaultArgs<ExtArgs>>): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    categoria<T extends Producto$categoriaArgs<ExtArgs> = {}>(args?: Subset<T, Producto$categoriaArgs<ExtArgs>>): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     detalles<T extends Producto$detallesArgs<ExtArgs> = {}>(args?: Subset<T, Producto$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7913,6 +7926,25 @@ export namespace Prisma {
   }
 
   /**
+   * Producto.categoria
+   */
+  export type Producto$categoriaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Categoria
+     */
+    omit?: CategoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    where?: CategoriaWhereInput
+  }
+
+  /**
    * Producto.detalles
    */
   export type Producto$detallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8161,8 +8193,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
-    precioId: number
+    talleId: number | null
+    precioId: number | null
     _count: DetalleCountAggregateOutputType | null
     _avg: DetalleAvgAggregateOutputType | null
     _sum: DetalleSumAggregateOutputType | null
@@ -8194,8 +8226,8 @@ export namespace Prisma {
     talleId?: boolean
     precioId?: boolean
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
     imagenes?: boolean | Detalle$imagenesArgs<ExtArgs>
     ordenesItems?: boolean | Detalle$ordenesItemsArgs<ExtArgs>
     _count?: boolean | DetalleCountOutputTypeDefaultArgs<ExtArgs>
@@ -8211,8 +8243,8 @@ export namespace Prisma {
     talleId?: boolean
     precioId?: boolean
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
   }, ExtArgs["result"]["detalle"]>
 
   export type DetalleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8225,8 +8257,8 @@ export namespace Prisma {
     talleId?: boolean
     precioId?: boolean
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
   }, ExtArgs["result"]["detalle"]>
 
   export type DetalleSelectScalar = {
@@ -8243,29 +8275,29 @@ export namespace Prisma {
   export type DetalleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "color" | "marca" | "stock" | "estado" | "productoId" | "talleId" | "precioId", ExtArgs["result"]["detalle"]>
   export type DetalleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
     imagenes?: boolean | Detalle$imagenesArgs<ExtArgs>
     ordenesItems?: boolean | Detalle$ordenesItemsArgs<ExtArgs>
     _count?: boolean | DetalleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DetalleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
   }
   export type DetalleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     producto?: boolean | ProductoDefaultArgs<ExtArgs>
-    talle?: boolean | TalleDefaultArgs<ExtArgs>
-    precio?: boolean | PrecioDefaultArgs<ExtArgs>
+    talle?: boolean | Detalle$talleArgs<ExtArgs>
+    precio?: boolean | Detalle$precioArgs<ExtArgs>
   }
 
   export type $DetallePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Detalle"
     objects: {
       producto: Prisma.$ProductoPayload<ExtArgs>
-      talle: Prisma.$TallePayload<ExtArgs>
-      precio: Prisma.$PrecioPayload<ExtArgs>
+      talle: Prisma.$TallePayload<ExtArgs> | null
+      precio: Prisma.$PrecioPayload<ExtArgs> | null
       imagenes: Prisma.$DetalleImagenPayload<ExtArgs>[]
       ordenesItems: Prisma.$OrdenCompraDetallePayload<ExtArgs>[]
     }
@@ -8276,8 +8308,8 @@ export namespace Prisma {
       stock: number
       estado: boolean
       productoId: number
-      talleId: number
-      precioId: number
+      talleId: number | null
+      precioId: number | null
     }, ExtArgs["result"]["detalle"]>
     composites: {}
   }
@@ -8673,8 +8705,8 @@ export namespace Prisma {
   export interface Prisma__DetalleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     producto<T extends ProductoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductoDefaultArgs<ExtArgs>>): Prisma__ProductoClient<$Result.GetResult<Prisma.$ProductoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    talle<T extends TalleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TalleDefaultArgs<ExtArgs>>): Prisma__TalleClient<$Result.GetResult<Prisma.$TallePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    precio<T extends PrecioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PrecioDefaultArgs<ExtArgs>>): Prisma__PrecioClient<$Result.GetResult<Prisma.$PrecioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    talle<T extends Detalle$talleArgs<ExtArgs> = {}>(args?: Subset<T, Detalle$talleArgs<ExtArgs>>): Prisma__TalleClient<$Result.GetResult<Prisma.$TallePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    precio<T extends Detalle$precioArgs<ExtArgs> = {}>(args?: Subset<T, Detalle$precioArgs<ExtArgs>>): Prisma__PrecioClient<$Result.GetResult<Prisma.$PrecioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     imagenes<T extends Detalle$imagenesArgs<ExtArgs> = {}>(args?: Subset<T, Detalle$imagenesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DetalleImagenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ordenesItems<T extends Detalle$ordenesItemsArgs<ExtArgs> = {}>(args?: Subset<T, Detalle$ordenesItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrdenCompraDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -9107,6 +9139,44 @@ export namespace Prisma {
      * Limit how many Detalles to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Detalle.talle
+   */
+  export type Detalle$talleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Talle
+     */
+    select?: TalleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Talle
+     */
+    omit?: TalleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TalleInclude<ExtArgs> | null
+    where?: TalleWhereInput
+  }
+
+  /**
+   * Detalle.precio
+   */
+  export type Detalle$precioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Precio
+     */
+    select?: PrecioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Precio
+     */
+    omit?: PrecioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PrecioInclude<ExtArgs> | null
+    where?: PrecioWhereInput
   }
 
   /**
@@ -11319,31 +11389,26 @@ export namespace Prisma {
   }
 
   export type DetalleImagenAvgAggregateOutputType = {
-    id: number | null
     detalleId: number | null
     imagenId: number | null
   }
 
   export type DetalleImagenSumAggregateOutputType = {
-    id: number | null
     detalleId: number | null
     imagenId: number | null
   }
 
   export type DetalleImagenMinAggregateOutputType = {
-    id: number | null
     detalleId: number | null
     imagenId: number | null
   }
 
   export type DetalleImagenMaxAggregateOutputType = {
-    id: number | null
     detalleId: number | null
     imagenId: number | null
   }
 
   export type DetalleImagenCountAggregateOutputType = {
-    id: number
     detalleId: number
     imagenId: number
     _all: number
@@ -11351,31 +11416,26 @@ export namespace Prisma {
 
 
   export type DetalleImagenAvgAggregateInputType = {
-    id?: true
     detalleId?: true
     imagenId?: true
   }
 
   export type DetalleImagenSumAggregateInputType = {
-    id?: true
     detalleId?: true
     imagenId?: true
   }
 
   export type DetalleImagenMinAggregateInputType = {
-    id?: true
     detalleId?: true
     imagenId?: true
   }
 
   export type DetalleImagenMaxAggregateInputType = {
-    id?: true
     detalleId?: true
     imagenId?: true
   }
 
   export type DetalleImagenCountAggregateInputType = {
-    id?: true
     detalleId?: true
     imagenId?: true
     _all?: true
@@ -11468,7 +11528,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenGroupByOutputType = {
-    id: number
     detalleId: number
     imagenId: number
     _count: DetalleImagenCountAggregateOutputType | null
@@ -11493,7 +11552,6 @@ export namespace Prisma {
 
 
   export type DetalleImagenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     detalleId?: boolean
     imagenId?: boolean
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
@@ -11501,7 +11559,6 @@ export namespace Prisma {
   }, ExtArgs["result"]["detalleImagen"]>
 
   export type DetalleImagenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     detalleId?: boolean
     imagenId?: boolean
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
@@ -11509,7 +11566,6 @@ export namespace Prisma {
   }, ExtArgs["result"]["detalleImagen"]>
 
   export type DetalleImagenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     detalleId?: boolean
     imagenId?: boolean
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
@@ -11517,12 +11573,11 @@ export namespace Prisma {
   }, ExtArgs["result"]["detalleImagen"]>
 
   export type DetalleImagenSelectScalar = {
-    id?: boolean
     detalleId?: boolean
     imagenId?: boolean
   }
 
-  export type DetalleImagenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "detalleId" | "imagenId", ExtArgs["result"]["detalleImagen"]>
+  export type DetalleImagenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"detalleId" | "imagenId", ExtArgs["result"]["detalleImagen"]>
   export type DetalleImagenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     detalle?: boolean | DetalleDefaultArgs<ExtArgs>
     imagen?: boolean | ImagenDefaultArgs<ExtArgs>
@@ -11543,7 +11598,6 @@ export namespace Prisma {
       imagen: Prisma.$ImagenPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
       detalleId: number
       imagenId: number
     }, ExtArgs["result"]["detalleImagen"]>
@@ -11629,8 +11683,8 @@ export namespace Prisma {
      * // Get first 10 DetalleImagens
      * const detalleImagens = await prisma.detalleImagen.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const detalleImagenWithIdOnly = await prisma.detalleImagen.findMany({ select: { id: true } })
+     * // Only select the `detalleId`
+     * const detalleImagenWithDetalleIdOnly = await prisma.detalleImagen.findMany({ select: { detalleId: true } })
      * 
      */
     findMany<T extends DetalleImagenFindManyArgs>(args?: SelectSubset<T, DetalleImagenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DetalleImagenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -11674,9 +11728,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many DetalleImagens and only return the `id`
-     * const detalleImagenWithIdOnly = await prisma.detalleImagen.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many DetalleImagens and only return the `detalleId`
+     * const detalleImagenWithDetalleIdOnly = await prisma.detalleImagen.createManyAndReturn({
+     *   select: { detalleId: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -11765,9 +11819,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more DetalleImagens and only return the `id`
-     * const detalleImagenWithIdOnly = await prisma.detalleImagen.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more DetalleImagens and only return the `detalleId`
+     * const detalleImagenWithDetalleIdOnly = await prisma.detalleImagen.updateManyAndReturn({
+     *   select: { detalleId: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -11971,7 +12025,6 @@ export namespace Prisma {
    * Fields of the DetalleImagen model
    */
   interface DetalleImagenFieldRefs {
-    readonly id: FieldRef<"DetalleImagen", 'Int'>
     readonly detalleId: FieldRef<"DetalleImagen", 'Int'>
     readonly imagenId: FieldRef<"DetalleImagen", 'Int'>
   }
@@ -15861,7 +15914,7 @@ export namespace Prisma {
     total?: boolean
     usuarioDireccionId?: boolean
     usuarioDireccion?: boolean | UsuarioDireccionDefaultArgs<ExtArgs>
-    detalles?: boolean | OrdenCompra$detallesArgs<ExtArgs>
+    ordenCompraDetalles?: boolean | OrdenCompra$ordenCompraDetallesArgs<ExtArgs>
     _count?: boolean | OrdenCompraCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ordenCompra"]>
 
@@ -15891,7 +15944,7 @@ export namespace Prisma {
   export type OrdenCompraOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fechaCompra" | "total" | "usuarioDireccionId", ExtArgs["result"]["ordenCompra"]>
   export type OrdenCompraInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuarioDireccion?: boolean | UsuarioDireccionDefaultArgs<ExtArgs>
-    detalles?: boolean | OrdenCompra$detallesArgs<ExtArgs>
+    ordenCompraDetalles?: boolean | OrdenCompra$ordenCompraDetallesArgs<ExtArgs>
     _count?: boolean | OrdenCompraCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrdenCompraIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15905,7 +15958,7 @@ export namespace Prisma {
     name: "OrdenCompra"
     objects: {
       usuarioDireccion: Prisma.$UsuarioDireccionPayload<ExtArgs>
-      detalles: Prisma.$OrdenCompraDetallePayload<ExtArgs>[]
+      ordenCompraDetalles: Prisma.$OrdenCompraDetallePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -16307,7 +16360,7 @@ export namespace Prisma {
   export interface Prisma__OrdenCompraClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     usuarioDireccion<T extends UsuarioDireccionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDireccionDefaultArgs<ExtArgs>>): Prisma__UsuarioDireccionClient<$Result.GetResult<Prisma.$UsuarioDireccionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    detalles<T extends OrdenCompra$detallesArgs<ExtArgs> = {}>(args?: Subset<T, OrdenCompra$detallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrdenCompraDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ordenCompraDetalles<T extends OrdenCompra$ordenCompraDetallesArgs<ExtArgs> = {}>(args?: Subset<T, OrdenCompra$ordenCompraDetallesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrdenCompraDetallePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16737,9 +16790,9 @@ export namespace Prisma {
   }
 
   /**
-   * OrdenCompra.detalles
+   * OrdenCompra.ordenCompraDetalles
    */
-  export type OrdenCompra$detallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type OrdenCompra$ordenCompraDetallesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the OrdenCompraDetalle
      */
@@ -17881,6 +17934,7 @@ export namespace Prisma {
     email: 'email',
     contrasena: 'contrasena',
     dni: 'dni',
+    activo: 'activo',
     rol: 'rol'
   };
 
@@ -17957,7 +18011,6 @@ export namespace Prisma {
 
 
   export const DetalleImagenScalarFieldEnum: {
-    id: 'id',
     detalleId: 'detalleId',
     imagenId: 'imagenId'
   };
@@ -18027,6 +18080,14 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   /**
    * Field references
    */
@@ -18061,6 +18122,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Rol'
    */
   export type EnumRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rol'>
@@ -18071,13 +18139,6 @@ export namespace Prisma {
    * Reference to a field of type 'Rol[]'
    */
   export type ListEnumRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rol[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -18121,6 +18182,7 @@ export namespace Prisma {
     email?: StringFilter<"Usuario"> | string
     contrasena?: StringFilter<"Usuario"> | string
     dni?: StringFilter<"Usuario"> | string
+    activo?: BoolFilter<"Usuario"> | boolean
     rol?: EnumRolFilter<"Usuario"> | $Enums.Rol
     usuarioDireccion?: UsuarioDireccionListRelationFilter
   }
@@ -18131,6 +18193,7 @@ export namespace Prisma {
     email?: SortOrder
     contrasena?: SortOrder
     dni?: SortOrder
+    activo?: SortOrder
     rol?: SortOrder
     usuarioDireccion?: UsuarioDireccionOrderByRelationAggregateInput
   }
@@ -18144,6 +18207,7 @@ export namespace Prisma {
     nombre?: StringFilter<"Usuario"> | string
     contrasena?: StringFilter<"Usuario"> | string
     dni?: StringFilter<"Usuario"> | string
+    activo?: BoolFilter<"Usuario"> | boolean
     rol?: EnumRolFilter<"Usuario"> | $Enums.Rol
     usuarioDireccion?: UsuarioDireccionListRelationFilter
   }, "id" | "email">
@@ -18154,6 +18218,7 @@ export namespace Prisma {
     email?: SortOrder
     contrasena?: SortOrder
     dni?: SortOrder
+    activo?: SortOrder
     rol?: SortOrder
     _count?: UsuarioCountOrderByAggregateInput
     _avg?: UsuarioAvgOrderByAggregateInput
@@ -18171,6 +18236,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Usuario"> | string
     contrasena?: StringWithAggregatesFilter<"Usuario"> | string
     dni?: StringWithAggregatesFilter<"Usuario"> | string
+    activo?: BoolWithAggregatesFilter<"Usuario"> | boolean
     rol?: EnumRolWithAggregatesFilter<"Usuario"> | $Enums.Rol
   }
 
@@ -18335,8 +18401,8 @@ export namespace Prisma {
     nombre?: StringFilter<"Producto"> | string
     sexo?: StringFilter<"Producto"> | string
     tipoProducto?: IntFilter<"Producto"> | number
-    categoriaId?: IntFilter<"Producto"> | number
-    categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
+    categoriaId?: IntNullableFilter<"Producto"> | number | null
+    categoria?: XOR<CategoriaNullableScalarRelationFilter, CategoriaWhereInput> | null
     detalles?: DetalleListRelationFilter
   }
 
@@ -18345,7 +18411,7 @@ export namespace Prisma {
     nombre?: SortOrder
     sexo?: SortOrder
     tipoProducto?: SortOrder
-    categoriaId?: SortOrder
+    categoriaId?: SortOrderInput | SortOrder
     categoria?: CategoriaOrderByWithRelationInput
     detalles?: DetalleOrderByRelationAggregateInput
   }
@@ -18358,8 +18424,8 @@ export namespace Prisma {
     nombre?: StringFilter<"Producto"> | string
     sexo?: StringFilter<"Producto"> | string
     tipoProducto?: IntFilter<"Producto"> | number
-    categoriaId?: IntFilter<"Producto"> | number
-    categoria?: XOR<CategoriaScalarRelationFilter, CategoriaWhereInput>
+    categoriaId?: IntNullableFilter<"Producto"> | number | null
+    categoria?: XOR<CategoriaNullableScalarRelationFilter, CategoriaWhereInput> | null
     detalles?: DetalleListRelationFilter
   }, "id">
 
@@ -18368,7 +18434,7 @@ export namespace Prisma {
     nombre?: SortOrder
     sexo?: SortOrder
     tipoProducto?: SortOrder
-    categoriaId?: SortOrder
+    categoriaId?: SortOrderInput | SortOrder
     _count?: ProductoCountOrderByAggregateInput
     _avg?: ProductoAvgOrderByAggregateInput
     _max?: ProductoMaxOrderByAggregateInput
@@ -18384,7 +18450,7 @@ export namespace Prisma {
     nombre?: StringWithAggregatesFilter<"Producto"> | string
     sexo?: StringWithAggregatesFilter<"Producto"> | string
     tipoProducto?: IntWithAggregatesFilter<"Producto"> | number
-    categoriaId?: IntWithAggregatesFilter<"Producto"> | number
+    categoriaId?: IntNullableWithAggregatesFilter<"Producto"> | number | null
   }
 
   export type DetalleWhereInput = {
@@ -18397,11 +18463,11 @@ export namespace Prisma {
     stock?: IntFilter<"Detalle"> | number
     estado?: BoolFilter<"Detalle"> | boolean
     productoId?: IntFilter<"Detalle"> | number
-    talleId?: IntFilter<"Detalle"> | number
-    precioId?: IntFilter<"Detalle"> | number
+    talleId?: IntNullableFilter<"Detalle"> | number | null
+    precioId?: IntNullableFilter<"Detalle"> | number | null
     producto?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
-    talle?: XOR<TalleScalarRelationFilter, TalleWhereInput>
-    precio?: XOR<PrecioScalarRelationFilter, PrecioWhereInput>
+    talle?: XOR<TalleNullableScalarRelationFilter, TalleWhereInput> | null
+    precio?: XOR<PrecioNullableScalarRelationFilter, PrecioWhereInput> | null
     imagenes?: DetalleImagenListRelationFilter
     ordenesItems?: OrdenCompraDetalleListRelationFilter
   }
@@ -18413,8 +18479,8 @@ export namespace Prisma {
     stock?: SortOrder
     estado?: SortOrder
     productoId?: SortOrder
-    talleId?: SortOrder
-    precioId?: SortOrder
+    talleId?: SortOrderInput | SortOrder
+    precioId?: SortOrderInput | SortOrder
     producto?: ProductoOrderByWithRelationInput
     talle?: TalleOrderByWithRelationInput
     precio?: PrecioOrderByWithRelationInput
@@ -18432,11 +18498,11 @@ export namespace Prisma {
     stock?: IntFilter<"Detalle"> | number
     estado?: BoolFilter<"Detalle"> | boolean
     productoId?: IntFilter<"Detalle"> | number
-    talleId?: IntFilter<"Detalle"> | number
-    precioId?: IntFilter<"Detalle"> | number
+    talleId?: IntNullableFilter<"Detalle"> | number | null
+    precioId?: IntNullableFilter<"Detalle"> | number | null
     producto?: XOR<ProductoScalarRelationFilter, ProductoWhereInput>
-    talle?: XOR<TalleScalarRelationFilter, TalleWhereInput>
-    precio?: XOR<PrecioScalarRelationFilter, PrecioWhereInput>
+    talle?: XOR<TalleNullableScalarRelationFilter, TalleWhereInput> | null
+    precio?: XOR<PrecioNullableScalarRelationFilter, PrecioWhereInput> | null
     imagenes?: DetalleImagenListRelationFilter
     ordenesItems?: OrdenCompraDetalleListRelationFilter
   }, "id">
@@ -18448,8 +18514,8 @@ export namespace Prisma {
     stock?: SortOrder
     estado?: SortOrder
     productoId?: SortOrder
-    talleId?: SortOrder
-    precioId?: SortOrder
+    talleId?: SortOrderInput | SortOrder
+    precioId?: SortOrderInput | SortOrder
     _count?: DetalleCountOrderByAggregateInput
     _avg?: DetalleAvgOrderByAggregateInput
     _max?: DetalleMaxOrderByAggregateInput
@@ -18467,8 +18533,8 @@ export namespace Prisma {
     stock?: IntWithAggregatesFilter<"Detalle"> | number
     estado?: BoolWithAggregatesFilter<"Detalle"> | boolean
     productoId?: IntWithAggregatesFilter<"Detalle"> | number
-    talleId?: IntWithAggregatesFilter<"Detalle"> | number
-    precioId?: IntWithAggregatesFilter<"Detalle"> | number
+    talleId?: IntNullableWithAggregatesFilter<"Detalle"> | number | null
+    precioId?: IntNullableWithAggregatesFilter<"Detalle"> | number | null
   }
 
   export type TalleWhereInput = {
@@ -18559,7 +18625,6 @@ export namespace Prisma {
     AND?: DetalleImagenWhereInput | DetalleImagenWhereInput[]
     OR?: DetalleImagenWhereInput[]
     NOT?: DetalleImagenWhereInput | DetalleImagenWhereInput[]
-    id?: IntFilter<"DetalleImagen"> | number
     detalleId?: IntFilter<"DetalleImagen"> | number
     imagenId?: IntFilter<"DetalleImagen"> | number
     detalle?: XOR<DetalleScalarRelationFilter, DetalleWhereInput>
@@ -18567,7 +18632,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenOrderByWithRelationInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
     detalle?: DetalleOrderByWithRelationInput
@@ -18575,7 +18639,7 @@ export namespace Prisma {
   }
 
   export type DetalleImagenWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    detalleId_imagenId?: DetalleImagenDetalleIdImagenIdCompoundUniqueInput
     AND?: DetalleImagenWhereInput | DetalleImagenWhereInput[]
     OR?: DetalleImagenWhereInput[]
     NOT?: DetalleImagenWhereInput | DetalleImagenWhereInput[]
@@ -18583,10 +18647,9 @@ export namespace Prisma {
     imagenId?: IntFilter<"DetalleImagen"> | number
     detalle?: XOR<DetalleScalarRelationFilter, DetalleWhereInput>
     imagen?: XOR<ImagenScalarRelationFilter, ImagenWhereInput>
-  }, "id">
+  }, "detalleId_imagenId">
 
   export type DetalleImagenOrderByWithAggregationInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
     _count?: DetalleImagenCountOrderByAggregateInput
@@ -18600,7 +18663,6 @@ export namespace Prisma {
     AND?: DetalleImagenScalarWhereWithAggregatesInput | DetalleImagenScalarWhereWithAggregatesInput[]
     OR?: DetalleImagenScalarWhereWithAggregatesInput[]
     NOT?: DetalleImagenScalarWhereWithAggregatesInput | DetalleImagenScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"DetalleImagen"> | number
     detalleId?: IntWithAggregatesFilter<"DetalleImagen"> | number
     imagenId?: IntWithAggregatesFilter<"DetalleImagen"> | number
   }
@@ -18762,7 +18824,7 @@ export namespace Prisma {
     total?: FloatFilter<"OrdenCompra"> | number
     usuarioDireccionId?: IntFilter<"OrdenCompra"> | number
     usuarioDireccion?: XOR<UsuarioDireccionScalarRelationFilter, UsuarioDireccionWhereInput>
-    detalles?: OrdenCompraDetalleListRelationFilter
+    ordenCompraDetalles?: OrdenCompraDetalleListRelationFilter
   }
 
   export type OrdenCompraOrderByWithRelationInput = {
@@ -18771,7 +18833,7 @@ export namespace Prisma {
     total?: SortOrder
     usuarioDireccionId?: SortOrder
     usuarioDireccion?: UsuarioDireccionOrderByWithRelationInput
-    detalles?: OrdenCompraDetalleOrderByRelationAggregateInput
+    ordenCompraDetalles?: OrdenCompraDetalleOrderByRelationAggregateInput
   }
 
   export type OrdenCompraWhereUniqueInput = Prisma.AtLeast<{
@@ -18783,7 +18845,7 @@ export namespace Prisma {
     total?: FloatFilter<"OrdenCompra"> | number
     usuarioDireccionId?: IntFilter<"OrdenCompra"> | number
     usuarioDireccion?: XOR<UsuarioDireccionScalarRelationFilter, UsuarioDireccionWhereInput>
-    detalles?: OrdenCompraDetalleListRelationFilter
+    ordenCompraDetalles?: OrdenCompraDetalleListRelationFilter
   }, "id">
 
   export type OrdenCompraOrderByWithAggregationInput = {
@@ -18864,6 +18926,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo?: boolean
     rol: $Enums.Rol
     usuarioDireccion?: UsuarioDireccionCreateNestedManyWithoutUsuarioInput
   }
@@ -18874,6 +18937,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo?: boolean
     rol: $Enums.Rol
     usuarioDireccion?: UsuarioDireccionUncheckedCreateNestedManyWithoutUsuarioInput
   }
@@ -18883,6 +18947,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     usuarioDireccion?: UsuarioDireccionUpdateManyWithoutUsuarioNestedInput
   }
@@ -18893,6 +18958,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     usuarioDireccion?: UsuarioDireccionUncheckedUpdateManyWithoutUsuarioNestedInput
   }
@@ -18903,6 +18969,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo?: boolean
     rol: $Enums.Rol
   }
 
@@ -18911,6 +18978,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
   }
 
@@ -18920,6 +18988,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
   }
 
@@ -19062,7 +19131,7 @@ export namespace Prisma {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoria: CategoriaCreateNestedOneWithoutProductosInput
+    categoria?: CategoriaCreateNestedOneWithoutProductosInput
     detalles?: DetalleCreateNestedManyWithoutProductoInput
   }
 
@@ -19071,7 +19140,7 @@ export namespace Prisma {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoriaId: number
+    categoriaId?: number | null
     detalles?: DetalleUncheckedCreateNestedManyWithoutProductoInput
   }
 
@@ -19079,7 +19148,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     sexo?: StringFieldUpdateOperationsInput | string
     tipoProducto?: IntFieldUpdateOperationsInput | number
-    categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
+    categoria?: CategoriaUpdateOneWithoutProductosNestedInput
     detalles?: DetalleUpdateManyWithoutProductoNestedInput
   }
 
@@ -19088,7 +19157,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     sexo?: StringFieldUpdateOperationsInput | string
     tipoProducto?: IntFieldUpdateOperationsInput | number
-    categoriaId?: IntFieldUpdateOperationsInput | number
+    categoriaId?: NullableIntFieldUpdateOperationsInput | number | null
     detalles?: DetalleUncheckedUpdateManyWithoutProductoNestedInput
   }
 
@@ -19097,7 +19166,7 @@ export namespace Prisma {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoriaId: number
+    categoriaId?: number | null
   }
 
   export type ProductoUpdateManyMutationInput = {
@@ -19111,7 +19180,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     sexo?: StringFieldUpdateOperationsInput | string
     tipoProducto?: IntFieldUpdateOperationsInput | number
-    categoriaId?: IntFieldUpdateOperationsInput | number
+    categoriaId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DetalleCreateInput = {
@@ -19120,8 +19189,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     producto: ProductoCreateNestedOneWithoutDetallesInput
-    talle: TalleCreateNestedOneWithoutDetallesInput
-    precio: PrecioCreateNestedOneWithoutDetallesInput
+    talle?: TalleCreateNestedOneWithoutDetallesInput
+    precio?: PrecioCreateNestedOneWithoutDetallesInput
     imagenes?: DetalleImagenCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleCreateNestedManyWithoutDetalleInput
   }
@@ -19133,8 +19202,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
     imagenes?: DetalleImagenUncheckedCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutDetalleInput
   }
@@ -19145,8 +19214,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     producto?: ProductoUpdateOneRequiredWithoutDetallesNestedInput
-    talle?: TalleUpdateOneRequiredWithoutDetallesNestedInput
-    precio?: PrecioUpdateOneRequiredWithoutDetallesNestedInput
+    talle?: TalleUpdateOneWithoutDetallesNestedInput
+    precio?: PrecioUpdateOneWithoutDetallesNestedInput
     imagenes?: DetalleImagenUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUpdateManyWithoutDetalleNestedInput
   }
@@ -19158,8 +19227,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
     imagenes?: DetalleImagenUncheckedUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleNestedInput
   }
@@ -19171,8 +19240,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
   }
 
   export type DetalleUpdateManyMutationInput = {
@@ -19189,8 +19258,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TalleCreateInput = {
@@ -19271,7 +19340,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedCreateInput = {
-    id?: number
     detalleId: number
     imagenId: number
   }
@@ -19282,13 +19350,11 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
     imagenId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DetalleImagenCreateManyInput = {
-    id?: number
     detalleId: number
     imagenId: number
   }
@@ -19298,7 +19364,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
     imagenId?: IntFieldUpdateOperationsInput | number
   }
@@ -19438,7 +19503,7 @@ export namespace Prisma {
     fechaCompra: Date | string
     total: number
     usuarioDireccion: UsuarioDireccionCreateNestedOneWithoutOrdenesInput
-    detalles?: OrdenCompraDetalleCreateNestedManyWithoutOrdenCompraInput
+    ordenCompraDetalles?: OrdenCompraDetalleCreateNestedManyWithoutOrdenCompraInput
   }
 
   export type OrdenCompraUncheckedCreateInput = {
@@ -19446,14 +19511,14 @@ export namespace Prisma {
     fechaCompra: Date | string
     total: number
     usuarioDireccionId: number
-    detalles?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutOrdenCompraInput
+    ordenCompraDetalles?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutOrdenCompraInput
   }
 
   export type OrdenCompraUpdateInput = {
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
     usuarioDireccion?: UsuarioDireccionUpdateOneRequiredWithoutOrdenesNestedInput
-    detalles?: OrdenCompraDetalleUpdateManyWithoutOrdenCompraNestedInput
+    ordenCompraDetalles?: OrdenCompraDetalleUpdateManyWithoutOrdenCompraNestedInput
   }
 
   export type OrdenCompraUncheckedUpdateInput = {
@@ -19461,7 +19526,7 @@ export namespace Prisma {
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
     usuarioDireccionId?: IntFieldUpdateOperationsInput | number
-    detalles?: OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraNestedInput
+    ordenCompraDetalles?: OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraNestedInput
   }
 
   export type OrdenCompraCreateManyInput = {
@@ -19485,7 +19550,7 @@ export namespace Prisma {
 
   export type OrdenCompraDetalleCreateInput = {
     cantidad?: number
-    ordenCompra: OrdenCompraCreateNestedOneWithoutDetallesInput
+    ordenCompra: OrdenCompraCreateNestedOneWithoutOrdenCompraDetallesInput
     detalle: DetalleCreateNestedOneWithoutOrdenesItemsInput
   }
 
@@ -19497,7 +19562,7 @@ export namespace Prisma {
 
   export type OrdenCompraDetalleUpdateInput = {
     cantidad?: IntFieldUpdateOperationsInput | number
-    ordenCompra?: OrdenCompraUpdateOneRequiredWithoutDetallesNestedInput
+    ordenCompra?: OrdenCompraUpdateOneRequiredWithoutOrdenCompraDetallesNestedInput
     detalle?: DetalleUpdateOneRequiredWithoutOrdenesItemsNestedInput
   }
 
@@ -19549,6 +19614,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type EnumRolFilter<$PrismaModel = never> = {
     equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
     in?: $Enums.Rol[] | ListEnumRolFieldRefInput<$PrismaModel>
@@ -19572,6 +19642,7 @@ export namespace Prisma {
     email?: SortOrder
     contrasena?: SortOrder
     dni?: SortOrder
+    activo?: SortOrder
     rol?: SortOrder
   }
 
@@ -19585,6 +19656,7 @@ export namespace Prisma {
     email?: SortOrder
     contrasena?: SortOrder
     dni?: SortOrder
+    activo?: SortOrder
     rol?: SortOrder
   }
 
@@ -19594,6 +19666,7 @@ export namespace Prisma {
     email?: SortOrder
     contrasena?: SortOrder
     dni?: SortOrder
+    activo?: SortOrder
     rol?: SortOrder
   }
 
@@ -19633,6 +19706,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumRolWithAggregatesFilter<$PrismaModel = never> = {
@@ -19765,15 +19846,31 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type CategoriaScalarRelationFilter = {
-    is?: CategoriaWhereInput
-    isNot?: CategoriaWhereInput
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CategoriaNullableScalarRelationFilter = {
+    is?: CategoriaWhereInput | null
+    isNot?: CategoriaWhereInput | null
   }
 
   export type DetalleListRelationFilter = {
     every?: DetalleWhereInput
     some?: DetalleWhereInput
     none?: DetalleWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type DetalleOrderByRelationAggregateInput = {
@@ -19816,9 +19913,20 @@ export namespace Prisma {
     categoriaId?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type ProductoScalarRelationFilter = {
@@ -19826,14 +19934,14 @@ export namespace Prisma {
     isNot?: ProductoWhereInput
   }
 
-  export type TalleScalarRelationFilter = {
-    is?: TalleWhereInput
-    isNot?: TalleWhereInput
+  export type TalleNullableScalarRelationFilter = {
+    is?: TalleWhereInput | null
+    isNot?: TalleWhereInput | null
   }
 
-  export type PrecioScalarRelationFilter = {
-    is?: PrecioWhereInput
-    isNot?: PrecioWhereInput
+  export type PrecioNullableScalarRelationFilter = {
+    is?: PrecioWhereInput | null
+    isNot?: PrecioWhereInput | null
   }
 
   export type DetalleImagenListRelationFilter = {
@@ -19905,14 +20013,6 @@ export namespace Prisma {
     precioId?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type TalleCountOrderByAggregateInput = {
     id?: SortOrder
     numero?: SortOrder
@@ -19969,32 +20069,32 @@ export namespace Prisma {
     isNot?: ImagenWhereInput
   }
 
+  export type DetalleImagenDetalleIdImagenIdCompoundUniqueInput = {
+    detalleId: number
+    imagenId: number
+  }
+
   export type DetalleImagenCountOrderByAggregateInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
   }
 
   export type DetalleImagenAvgOrderByAggregateInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
   }
 
   export type DetalleImagenMaxOrderByAggregateInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
   }
 
   export type DetalleImagenMinOrderByAggregateInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
   }
 
   export type DetalleImagenSumOrderByAggregateInput = {
-    id?: SortOrder
     detalleId?: SortOrder
     imagenId?: SortOrder
   }
@@ -20120,6 +20220,11 @@ export namespace Prisma {
     id?: SortOrder
     precioCompra?: SortOrder
     precioVenta?: SortOrder
+  }
+
+  export type PrecioScalarRelationFilter = {
+    is?: PrecioWhereInput
+    isNot?: PrecioWhereInput
   }
 
   export type DescuentoScalarRelationFilter = {
@@ -20251,6 +20356,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type EnumRolFieldUpdateOperationsInput = {
@@ -20467,10 +20576,12 @@ export namespace Prisma {
     connect?: DetalleWhereUniqueInput | DetalleWhereUniqueInput[]
   }
 
-  export type CategoriaUpdateOneRequiredWithoutProductosNestedInput = {
+  export type CategoriaUpdateOneWithoutProductosNestedInput = {
     create?: XOR<CategoriaCreateWithoutProductosInput, CategoriaUncheckedCreateWithoutProductosInput>
     connectOrCreate?: CategoriaCreateOrConnectWithoutProductosInput
     upsert?: CategoriaUpsertWithoutProductosInput
+    disconnect?: CategoriaWhereInput | boolean
+    delete?: CategoriaWhereInput | boolean
     connect?: CategoriaWhereUniqueInput
     update?: XOR<XOR<CategoriaUpdateToOneWithWhereWithoutProductosInput, CategoriaUpdateWithoutProductosInput>, CategoriaUncheckedUpdateWithoutProductosInput>
   }
@@ -20487,6 +20598,14 @@ export namespace Prisma {
     update?: DetalleUpdateWithWhereUniqueWithoutProductoInput | DetalleUpdateWithWhereUniqueWithoutProductoInput[]
     updateMany?: DetalleUpdateManyWithWhereWithoutProductoInput | DetalleUpdateManyWithWhereWithoutProductoInput[]
     deleteMany?: DetalleScalarWhereInput | DetalleScalarWhereInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DetalleUncheckedUpdateManyWithoutProductoNestedInput = {
@@ -20549,10 +20668,6 @@ export namespace Prisma {
     connect?: OrdenCompraDetalleWhereUniqueInput | OrdenCompraDetalleWhereUniqueInput[]
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type ProductoUpdateOneRequiredWithoutDetallesNestedInput = {
     create?: XOR<ProductoCreateWithoutDetallesInput, ProductoUncheckedCreateWithoutDetallesInput>
     connectOrCreate?: ProductoCreateOrConnectWithoutDetallesInput
@@ -20561,18 +20676,22 @@ export namespace Prisma {
     update?: XOR<XOR<ProductoUpdateToOneWithWhereWithoutDetallesInput, ProductoUpdateWithoutDetallesInput>, ProductoUncheckedUpdateWithoutDetallesInput>
   }
 
-  export type TalleUpdateOneRequiredWithoutDetallesNestedInput = {
+  export type TalleUpdateOneWithoutDetallesNestedInput = {
     create?: XOR<TalleCreateWithoutDetallesInput, TalleUncheckedCreateWithoutDetallesInput>
     connectOrCreate?: TalleCreateOrConnectWithoutDetallesInput
     upsert?: TalleUpsertWithoutDetallesInput
+    disconnect?: TalleWhereInput | boolean
+    delete?: TalleWhereInput | boolean
     connect?: TalleWhereUniqueInput
     update?: XOR<XOR<TalleUpdateToOneWithWhereWithoutDetallesInput, TalleUpdateWithoutDetallesInput>, TalleUncheckedUpdateWithoutDetallesInput>
   }
 
-  export type PrecioUpdateOneRequiredWithoutDetallesNestedInput = {
+  export type PrecioUpdateOneWithoutDetallesNestedInput = {
     create?: XOR<PrecioCreateWithoutDetallesInput, PrecioUncheckedCreateWithoutDetallesInput>
     connectOrCreate?: PrecioCreateOrConnectWithoutDetallesInput
     upsert?: PrecioUpsertWithoutDetallesInput
+    disconnect?: PrecioWhereInput | boolean
+    delete?: PrecioWhereInput | boolean
     connect?: PrecioWhereUniqueInput
     update?: XOR<XOR<PrecioUpdateToOneWithWhereWithoutDetallesInput, PrecioUpdateWithoutDetallesInput>, PrecioUncheckedUpdateWithoutDetallesInput>
   }
@@ -20967,9 +21086,9 @@ export namespace Prisma {
     deleteMany?: OrdenCompraDetalleScalarWhereInput | OrdenCompraDetalleScalarWhereInput[]
   }
 
-  export type OrdenCompraCreateNestedOneWithoutDetallesInput = {
-    create?: XOR<OrdenCompraCreateWithoutDetallesInput, OrdenCompraUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: OrdenCompraCreateOrConnectWithoutDetallesInput
+  export type OrdenCompraCreateNestedOneWithoutOrdenCompraDetallesInput = {
+    create?: XOR<OrdenCompraCreateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedCreateWithoutOrdenCompraDetallesInput>
+    connectOrCreate?: OrdenCompraCreateOrConnectWithoutOrdenCompraDetallesInput
     connect?: OrdenCompraWhereUniqueInput
   }
 
@@ -20979,12 +21098,12 @@ export namespace Prisma {
     connect?: DetalleWhereUniqueInput
   }
 
-  export type OrdenCompraUpdateOneRequiredWithoutDetallesNestedInput = {
-    create?: XOR<OrdenCompraCreateWithoutDetallesInput, OrdenCompraUncheckedCreateWithoutDetallesInput>
-    connectOrCreate?: OrdenCompraCreateOrConnectWithoutDetallesInput
-    upsert?: OrdenCompraUpsertWithoutDetallesInput
+  export type OrdenCompraUpdateOneRequiredWithoutOrdenCompraDetallesNestedInput = {
+    create?: XOR<OrdenCompraCreateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedCreateWithoutOrdenCompraDetallesInput>
+    connectOrCreate?: OrdenCompraCreateOrConnectWithoutOrdenCompraDetallesInput
+    upsert?: OrdenCompraUpsertWithoutOrdenCompraDetallesInput
     connect?: OrdenCompraWhereUniqueInput
-    update?: XOR<XOR<OrdenCompraUpdateToOneWithWhereWithoutDetallesInput, OrdenCompraUpdateWithoutDetallesInput>, OrdenCompraUncheckedUpdateWithoutDetallesInput>
+    update?: XOR<XOR<OrdenCompraUpdateToOneWithWhereWithoutOrdenCompraDetallesInput, OrdenCompraUpdateWithoutOrdenCompraDetallesInput>, OrdenCompraUncheckedUpdateWithoutOrdenCompraDetallesInput>
   }
 
   export type DetalleUpdateOneRequiredWithoutOrdenesItemsNestedInput = {
@@ -21018,6 +21137,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedEnumRolFilter<$PrismaModel = never> = {
@@ -21071,6 +21195,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedEnumRolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
     in?: $Enums.Rol[] | ListEnumRolFieldRefInput<$PrismaModel>
@@ -21081,17 +21213,42 @@ export namespace Prisma {
     _max?: NestedEnumRolFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -21223,6 +21380,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo?: boolean
     rol: $Enums.Rol
   }
 
@@ -21232,6 +21390,7 @@ export namespace Prisma {
     email: string
     contrasena: string
     dni: string
+    activo?: boolean
     rol: $Enums.Rol
   }
 
@@ -21263,14 +21422,14 @@ export namespace Prisma {
   export type OrdenCompraCreateWithoutUsuarioDireccionInput = {
     fechaCompra: Date | string
     total: number
-    detalles?: OrdenCompraDetalleCreateNestedManyWithoutOrdenCompraInput
+    ordenCompraDetalles?: OrdenCompraDetalleCreateNestedManyWithoutOrdenCompraInput
   }
 
   export type OrdenCompraUncheckedCreateWithoutUsuarioDireccionInput = {
     id?: number
     fechaCompra: Date | string
     total: number
-    detalles?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutOrdenCompraInput
+    ordenCompraDetalles?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutOrdenCompraInput
   }
 
   export type OrdenCompraCreateOrConnectWithoutUsuarioDireccionInput = {
@@ -21299,6 +21458,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
   }
 
@@ -21308,6 +21468,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     contrasena?: StringFieldUpdateOperationsInput | string
     dni?: StringFieldUpdateOperationsInput | string
+    activo?: BoolFieldUpdateOperationsInput | boolean
     rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
   }
 
@@ -21412,7 +21573,7 @@ export namespace Prisma {
     nombre?: StringFilter<"Producto"> | string
     sexo?: StringFilter<"Producto"> | string
     tipoProducto?: IntFilter<"Producto"> | number
-    categoriaId?: IntFilter<"Producto"> | number
+    categoriaId?: IntNullableFilter<"Producto"> | number | null
   }
 
   export type CategoriaCreateWithoutProductosInput = {
@@ -21434,8 +21595,8 @@ export namespace Prisma {
     marca: string
     stock: number
     estado: boolean
-    talle: TalleCreateNestedOneWithoutDetallesInput
-    precio: PrecioCreateNestedOneWithoutDetallesInput
+    talle?: TalleCreateNestedOneWithoutDetallesInput
+    precio?: PrecioCreateNestedOneWithoutDetallesInput
     imagenes?: DetalleImagenCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleCreateNestedManyWithoutDetalleInput
   }
@@ -21446,8 +21607,8 @@ export namespace Prisma {
     marca: string
     stock: number
     estado: boolean
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
     imagenes?: DetalleImagenUncheckedCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutDetalleInput
   }
@@ -21508,15 +21669,15 @@ export namespace Prisma {
     stock?: IntFilter<"Detalle"> | number
     estado?: BoolFilter<"Detalle"> | boolean
     productoId?: IntFilter<"Detalle"> | number
-    talleId?: IntFilter<"Detalle"> | number
-    precioId?: IntFilter<"Detalle"> | number
+    talleId?: IntNullableFilter<"Detalle"> | number | null
+    precioId?: IntNullableFilter<"Detalle"> | number | null
   }
 
   export type ProductoCreateWithoutDetallesInput = {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoria: CategoriaCreateNestedOneWithoutProductosInput
+    categoria?: CategoriaCreateNestedOneWithoutProductosInput
   }
 
   export type ProductoUncheckedCreateWithoutDetallesInput = {
@@ -21524,7 +21685,7 @@ export namespace Prisma {
     nombre: string
     sexo: string
     tipoProducto: number
-    categoriaId: number
+    categoriaId?: number | null
   }
 
   export type ProductoCreateOrConnectWithoutDetallesInput = {
@@ -21569,7 +21730,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedCreateWithoutDetalleInput = {
-    id?: number
     imagenId: number
   }
 
@@ -21585,7 +21745,7 @@ export namespace Prisma {
 
   export type OrdenCompraDetalleCreateWithoutDetalleInput = {
     cantidad?: number
-    ordenCompra: OrdenCompraCreateNestedOneWithoutDetallesInput
+    ordenCompra: OrdenCompraCreateNestedOneWithoutOrdenCompraDetallesInput
   }
 
   export type OrdenCompraDetalleUncheckedCreateWithoutDetalleInput = {
@@ -21618,7 +21778,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     sexo?: StringFieldUpdateOperationsInput | string
     tipoProducto?: IntFieldUpdateOperationsInput | number
-    categoria?: CategoriaUpdateOneRequiredWithoutProductosNestedInput
+    categoria?: CategoriaUpdateOneWithoutProductosNestedInput
   }
 
   export type ProductoUncheckedUpdateWithoutDetallesInput = {
@@ -21626,7 +21786,7 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     sexo?: StringFieldUpdateOperationsInput | string
     tipoProducto?: IntFieldUpdateOperationsInput | number
-    categoriaId?: IntFieldUpdateOperationsInput | number
+    categoriaId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TalleUpsertWithoutDetallesInput = {
@@ -21693,7 +21853,6 @@ export namespace Prisma {
     AND?: DetalleImagenScalarWhereInput | DetalleImagenScalarWhereInput[]
     OR?: DetalleImagenScalarWhereInput[]
     NOT?: DetalleImagenScalarWhereInput | DetalleImagenScalarWhereInput[]
-    id?: IntFilter<"DetalleImagen"> | number
     detalleId?: IntFilter<"DetalleImagen"> | number
     imagenId?: IntFilter<"DetalleImagen"> | number
   }
@@ -21729,7 +21888,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     producto: ProductoCreateNestedOneWithoutDetallesInput
-    precio: PrecioCreateNestedOneWithoutDetallesInput
+    precio?: PrecioCreateNestedOneWithoutDetallesInput
     imagenes?: DetalleImagenCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleCreateNestedManyWithoutDetalleInput
   }
@@ -21741,7 +21900,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    precioId: number
+    precioId?: number | null
     imagenes?: DetalleImagenUncheckedCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutDetalleInput
   }
@@ -21777,7 +21936,6 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedCreateWithoutImagenInput = {
-    id?: number
     detalleId: number
   }
 
@@ -21813,8 +21971,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     producto: ProductoCreateNestedOneWithoutDetallesInput
-    talle: TalleCreateNestedOneWithoutDetallesInput
-    precio: PrecioCreateNestedOneWithoutDetallesInput
+    talle?: TalleCreateNestedOneWithoutDetallesInput
+    precio?: PrecioCreateNestedOneWithoutDetallesInput
     ordenesItems?: OrdenCompraDetalleCreateNestedManyWithoutDetalleInput
   }
 
@@ -21825,8 +21983,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
     ordenesItems?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutDetalleInput
   }
 
@@ -21866,8 +22024,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     producto?: ProductoUpdateOneRequiredWithoutDetallesNestedInput
-    talle?: TalleUpdateOneRequiredWithoutDetallesNestedInput
-    precio?: PrecioUpdateOneRequiredWithoutDetallesNestedInput
+    talle?: TalleUpdateOneWithoutDetallesNestedInput
+    precio?: PrecioUpdateOneWithoutDetallesNestedInput
     ordenesItems?: OrdenCompraDetalleUpdateManyWithoutDetalleNestedInput
   }
 
@@ -21878,8 +22036,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
     ordenesItems?: OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleNestedInput
   }
 
@@ -21951,7 +22109,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     producto: ProductoCreateNestedOneWithoutDetallesInput
-    talle: TalleCreateNestedOneWithoutDetallesInput
+    talle?: TalleCreateNestedOneWithoutDetallesInput
     imagenes?: DetalleImagenCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleCreateNestedManyWithoutDetalleInput
   }
@@ -21963,7 +22121,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
+    talleId?: number | null
     imagenes?: DetalleImagenUncheckedCreateNestedManyWithoutDetalleInput
     ordenesItems?: OrdenCompraDetalleUncheckedCreateNestedManyWithoutDetalleInput
   }
@@ -22186,22 +22344,22 @@ export namespace Prisma {
     data: XOR<OrdenCompraDetalleUpdateManyMutationInput, OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraInput>
   }
 
-  export type OrdenCompraCreateWithoutDetallesInput = {
+  export type OrdenCompraCreateWithoutOrdenCompraDetallesInput = {
     fechaCompra: Date | string
     total: number
     usuarioDireccion: UsuarioDireccionCreateNestedOneWithoutOrdenesInput
   }
 
-  export type OrdenCompraUncheckedCreateWithoutDetallesInput = {
+  export type OrdenCompraUncheckedCreateWithoutOrdenCompraDetallesInput = {
     id?: number
     fechaCompra: Date | string
     total: number
     usuarioDireccionId: number
   }
 
-  export type OrdenCompraCreateOrConnectWithoutDetallesInput = {
+  export type OrdenCompraCreateOrConnectWithoutOrdenCompraDetallesInput = {
     where: OrdenCompraWhereUniqueInput
-    create: XOR<OrdenCompraCreateWithoutDetallesInput, OrdenCompraUncheckedCreateWithoutDetallesInput>
+    create: XOR<OrdenCompraCreateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedCreateWithoutOrdenCompraDetallesInput>
   }
 
   export type DetalleCreateWithoutOrdenesItemsInput = {
@@ -22210,8 +22368,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     producto: ProductoCreateNestedOneWithoutDetallesInput
-    talle: TalleCreateNestedOneWithoutDetallesInput
-    precio: PrecioCreateNestedOneWithoutDetallesInput
+    talle?: TalleCreateNestedOneWithoutDetallesInput
+    precio?: PrecioCreateNestedOneWithoutDetallesInput
     imagenes?: DetalleImagenCreateNestedManyWithoutDetalleInput
   }
 
@@ -22222,8 +22380,8 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
     imagenes?: DetalleImagenUncheckedCreateNestedManyWithoutDetalleInput
   }
 
@@ -22232,24 +22390,24 @@ export namespace Prisma {
     create: XOR<DetalleCreateWithoutOrdenesItemsInput, DetalleUncheckedCreateWithoutOrdenesItemsInput>
   }
 
-  export type OrdenCompraUpsertWithoutDetallesInput = {
-    update: XOR<OrdenCompraUpdateWithoutDetallesInput, OrdenCompraUncheckedUpdateWithoutDetallesInput>
-    create: XOR<OrdenCompraCreateWithoutDetallesInput, OrdenCompraUncheckedCreateWithoutDetallesInput>
+  export type OrdenCompraUpsertWithoutOrdenCompraDetallesInput = {
+    update: XOR<OrdenCompraUpdateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedUpdateWithoutOrdenCompraDetallesInput>
+    create: XOR<OrdenCompraCreateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedCreateWithoutOrdenCompraDetallesInput>
     where?: OrdenCompraWhereInput
   }
 
-  export type OrdenCompraUpdateToOneWithWhereWithoutDetallesInput = {
+  export type OrdenCompraUpdateToOneWithWhereWithoutOrdenCompraDetallesInput = {
     where?: OrdenCompraWhereInput
-    data: XOR<OrdenCompraUpdateWithoutDetallesInput, OrdenCompraUncheckedUpdateWithoutDetallesInput>
+    data: XOR<OrdenCompraUpdateWithoutOrdenCompraDetallesInput, OrdenCompraUncheckedUpdateWithoutOrdenCompraDetallesInput>
   }
 
-  export type OrdenCompraUpdateWithoutDetallesInput = {
+  export type OrdenCompraUpdateWithoutOrdenCompraDetallesInput = {
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
     usuarioDireccion?: UsuarioDireccionUpdateOneRequiredWithoutOrdenesNestedInput
   }
 
-  export type OrdenCompraUncheckedUpdateWithoutDetallesInput = {
+  export type OrdenCompraUncheckedUpdateWithoutOrdenCompraDetallesInput = {
     id?: IntFieldUpdateOperationsInput | number
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
@@ -22273,8 +22431,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     producto?: ProductoUpdateOneRequiredWithoutDetallesNestedInput
-    talle?: TalleUpdateOneRequiredWithoutDetallesNestedInput
-    precio?: PrecioUpdateOneRequiredWithoutDetallesNestedInput
+    talle?: TalleUpdateOneWithoutDetallesNestedInput
+    precio?: PrecioUpdateOneWithoutDetallesNestedInput
     imagenes?: DetalleImagenUpdateManyWithoutDetalleNestedInput
   }
 
@@ -22285,8 +22443,8 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
     imagenes?: DetalleImagenUncheckedUpdateManyWithoutDetalleNestedInput
   }
 
@@ -22341,14 +22499,14 @@ export namespace Prisma {
   export type OrdenCompraUpdateWithoutUsuarioDireccionInput = {
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
-    detalles?: OrdenCompraDetalleUpdateManyWithoutOrdenCompraNestedInput
+    ordenCompraDetalles?: OrdenCompraDetalleUpdateManyWithoutOrdenCompraNestedInput
   }
 
   export type OrdenCompraUncheckedUpdateWithoutUsuarioDireccionInput = {
     id?: IntFieldUpdateOperationsInput | number
     fechaCompra?: DateTimeFieldUpdateOperationsInput | Date | string
     total?: FloatFieldUpdateOperationsInput | number
-    detalles?: OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraNestedInput
+    ordenCompraDetalles?: OrdenCompraDetalleUncheckedUpdateManyWithoutOrdenCompraNestedInput
   }
 
   export type OrdenCompraUncheckedUpdateManyWithoutUsuarioDireccionInput = {
@@ -22392,8 +22550,8 @@ export namespace Prisma {
     marca: string
     stock: number
     estado: boolean
-    talleId: number
-    precioId: number
+    talleId?: number | null
+    precioId?: number | null
   }
 
   export type DetalleUpdateWithoutProductoInput = {
@@ -22401,8 +22559,8 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
-    talle?: TalleUpdateOneRequiredWithoutDetallesNestedInput
-    precio?: PrecioUpdateOneRequiredWithoutDetallesNestedInput
+    talle?: TalleUpdateOneWithoutDetallesNestedInput
+    precio?: PrecioUpdateOneWithoutDetallesNestedInput
     imagenes?: DetalleImagenUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUpdateManyWithoutDetalleNestedInput
   }
@@ -22413,8 +22571,8 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
     imagenes?: DetalleImagenUncheckedUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleNestedInput
   }
@@ -22425,12 +22583,11 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
-    talleId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DetalleImagenCreateManyDetalleInput = {
-    id?: number
     imagenId: number
   }
 
@@ -22444,18 +22601,16 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedUpdateWithoutDetalleInput = {
-    id?: IntFieldUpdateOperationsInput | number
     imagenId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DetalleImagenUncheckedUpdateManyWithoutDetalleInput = {
-    id?: IntFieldUpdateOperationsInput | number
     imagenId?: IntFieldUpdateOperationsInput | number
   }
 
   export type OrdenCompraDetalleUpdateWithoutDetalleInput = {
     cantidad?: IntFieldUpdateOperationsInput | number
-    ordenCompra?: OrdenCompraUpdateOneRequiredWithoutDetallesNestedInput
+    ordenCompra?: OrdenCompraUpdateOneRequiredWithoutOrdenCompraDetallesNestedInput
   }
 
   export type OrdenCompraDetalleUncheckedUpdateWithoutDetalleInput = {
@@ -22475,7 +22630,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    precioId: number
+    precioId?: number | null
   }
 
   export type DetalleUpdateWithoutTalleInput = {
@@ -22484,7 +22639,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     producto?: ProductoUpdateOneRequiredWithoutDetallesNestedInput
-    precio?: PrecioUpdateOneRequiredWithoutDetallesNestedInput
+    precio?: PrecioUpdateOneWithoutDetallesNestedInput
     imagenes?: DetalleImagenUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUpdateManyWithoutDetalleNestedInput
   }
@@ -22496,7 +22651,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
     imagenes?: DetalleImagenUncheckedUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleNestedInput
   }
@@ -22508,11 +22663,10 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
+    precioId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DetalleImagenCreateManyImagenInput = {
-    id?: number
     detalleId: number
   }
 
@@ -22521,12 +22675,10 @@ export namespace Prisma {
   }
 
   export type DetalleImagenUncheckedUpdateWithoutImagenInput = {
-    id?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
   }
 
   export type DetalleImagenUncheckedUpdateManyWithoutImagenInput = {
-    id?: IntFieldUpdateOperationsInput | number
     detalleId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -22553,7 +22705,7 @@ export namespace Prisma {
     stock: number
     estado: boolean
     productoId: number
-    talleId: number
+    talleId?: number | null
   }
 
   export type PrecioDescuentoCreateManyPrecioInput = {
@@ -22566,7 +22718,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     producto?: ProductoUpdateOneRequiredWithoutDetallesNestedInput
-    talle?: TalleUpdateOneRequiredWithoutDetallesNestedInput
+    talle?: TalleUpdateOneWithoutDetallesNestedInput
     imagenes?: DetalleImagenUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUpdateManyWithoutDetalleNestedInput
   }
@@ -22578,7 +22730,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
     imagenes?: DetalleImagenUncheckedUpdateManyWithoutDetalleNestedInput
     ordenesItems?: OrdenCompraDetalleUncheckedUpdateManyWithoutDetalleNestedInput
   }
@@ -22590,7 +22742,7 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     estado?: BoolFieldUpdateOperationsInput | boolean
     productoId?: IntFieldUpdateOperationsInput | number
-    talleId?: IntFieldUpdateOperationsInput | number
+    talleId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PrecioDescuentoUpdateWithoutPrecioInput = {
